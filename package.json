@@ -4,7 +4,8 @@
   "description": "atg log colorizer",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./dist/index.js"
   },
   "repository": {
     "type": "git",
@@ -15,7 +16,6 @@
   "bugs": {
     "url": "https://github.com/troussej/atg-log-colorizer/issues"
   },
-
   "devDependencies": {
     "@types/node": "^8.0.1",
     "del": "^3.0.0",
@@ -28,5 +28,11 @@
     "ts-node": "^3.0.6",
     "typescript": "^2.3.4"
   },
-  "homepage": "https://github.com/troussej/atg-log-colorizer#readme"
+  "homepage": "https://github.com/troussej/atg-log-colorizer#readme",
+  "dependencies": {
+    "@types/chalk": "^0.4.31",
+    "@types/lodash": "^4.14.70",
+    "chalk": "^2.0.1",
+    "lodash": "^4.17.4"
+  }
 }
