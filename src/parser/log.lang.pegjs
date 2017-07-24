@@ -2,7 +2,7 @@
 
 // **** debug   Tue Jan 26 16:35:33 CET 2016    1453822533848   /atg/commerce/PipelineManager   Post Link Transaction
 
-LINE = l:( LOG / NUCLEUS_STARTED)  {return {value:l.value,level:l.level}}
+LINE = l:( LOG / NUCLEUS_STARTED / FAILSAFE)  {return l}
 
 LOG
  =  start:LOG_START _ message:MESSAGE{
@@ -13,6 +13,9 @@ LOG
   = _ "Nucleus running, app server startup continuing" _ {
     return {level:'special', value:text(), unique:true}
   }
+
+  FAILSAFE
+   = ANY {return {value:text(),failsafe:true}}
  
  LOG_START = DYNAMO_LOG_START
  

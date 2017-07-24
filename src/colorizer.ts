@@ -3,6 +3,9 @@ const readline = require('readline');
 import * as chalk from 'chalk';
 import * as _ from 'lodash';
 import * as parser from './parser/log.lang';
+import * as logger from 'winston';
+logger.level = process.env.LOG_LEVEL
+
 export class Colorizer {
 
     contextStack: string[] = [];
@@ -49,9 +52,14 @@ export class Colorizer {
 
             parsed = parser.parse(line);
             if (parsed) {
-                this.context = parsed.level;//keep context for lines without level
+                delete parsed.value
+                logger.debug(parsed);
+                if (!_.isNil(parsed.level)){
+                    this.context = parsed.level;//keep context for lines without level
+                }
             }
         } catch (e) {
+            logger.debug(e);
             // console.error(e);
         }
 
