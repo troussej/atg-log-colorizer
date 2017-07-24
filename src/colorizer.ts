@@ -2,33 +2,30 @@
 const readline = require('readline');
 import * as chalk from 'chalk';
 import * as _ from 'lodash';
+import * as parser from './parser/log.lang';
 export class Colorizer {
 
     contextStack: string[] = [];
+    context: string = 'info';
 
-    config:any = {
-        patterns : [
-            {
-                name:'debug',
-                pattern: /debug/,
+    config: any = {
+        patterns: {
+            debug: {
                 color: chalk.white
             },
-            {
-                name: 'trace',
-                pattern: /trace/,
+            trace: {
                 color: chalk.grey
             },
-            {
-                name: 'info',
-                pattern: /info/,
+            info: {
                 color: chalk.green
             },
-            {
-                name: 'error',
-                pattern: /error/,
+            error: {
                 color: chalk.red
+            },
+            special: {
+                color: chalk.magenta
             }
-        ]
+        }
     }
 
     public start(): void {
@@ -38,23 +35,37 @@ export class Colorizer {
             terminal: false
         });
 
-        let self = this;
-        rl.on('line', function(line) {
-            self.handleLine(line);
-        })
+        rl.on('line', this.handleLine.bind(this))
 
     }
 
-    private handleLine(line){
+    private handleLine(line) {
 
-       let pattern =  _.find(this.config.patterns,(p:any)=>{
-           return p.pattern.test(line);
-        })
-       if(pattern){
-           console.log(pattern.color(line));
-       }else{
-           console.log(line)
-       }
+
+        let res = line;
+        let parsed:any;
+
+        try {
+
+            parsed = parser.parse(line);
+            if (parsed) {
+                this.context = parsed.level;//keep context for lines without level
+            }
+        } catch (e) {
+            // console.error(e);
+        }
+
+        if (this.context) {
+
+            res = this.config.patterns[this.context].color(line);
+        }
+        //reset
+        if (parsed && parsed.unique === true) {
+            this.context = 'debug';
+        }
+
+        console.log(res);
+
     }
 
 }

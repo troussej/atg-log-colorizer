@@ -4,6 +4,7 @@ const del = require("del");
 const ts = require('gulp-typescript');
 const runSequence = require("run-sequence");
 const tsProject = ts.createProject('tsconfig.json');
+var pegjs = require('gulp-pegjs');
 
 const _ = require('lodash');
 
@@ -11,7 +12,6 @@ const rename = require("gulp-rename");
 const chmod = require('gulp-chmod');
 
 const targetFolder = 'dist';
-
 
 
 gulp.task("clean", function(done) {
@@ -28,6 +28,14 @@ gulp.task('scripts', function() {
     return tsResult.js.pipe(gulp.dest(targetFolder));
 });
 
+gulp.task('parser',function(){
+
+     return gulp.src('src/parser/*.pegjs')
+        .pipe(pegjs({format: "commonjs"}))
+        .pipe(gulp.dest('dist/parser/'));
+   
+})
+
 
 
 gulp.task("watch", function() {
@@ -36,5 +44,5 @@ gulp.task("watch", function() {
 });
 
 gulp.task("default", function(done) {
-    runSequence("clean", "scripts",  done);
+    runSequence("clean", "scripts", "parser",  done);
 });
