@@ -1,0 +1,224 @@
+2016-02-03 12:23:14,948 DEBUG [org.jboss.system.ServiceController] Creating dependent components for: jboss.system:type=Log4jService,service=Logging dependents are: []
+2016-02-03 12:23:14,948 DEBUG [org.jboss.system.ServiceController] Executing Chain: Cost and lead time for scenario n° 2 : 
+
+
+**** debug	Tue Jan 26 14:47:48 CET 2016	1453816068828	/com/decathlon/cube/commerce/ats/manager/DeliveryManager		[
+**** debug	Tue Jan 26 14:47:48 CET 2016	1453816068828	/com/decathlon/cube/commerce/ats/manager/DeliveryManager			Delivery scenario component: { inventory location = wh000002_huaqiao, Carrier route = { id = cr199, company = ZTWL, source = wh000002_huaqiao, destination = dz01_anhui_shi }, , prepared quantities = [ SKU 837138 : 5 item(s), SKU 545736 : 3 item(s),  ] }
+**** debug	Tue Jan 26 14:47:48 CET 2016	1453816068828	/com/decathlon/cube/commerce/ats/manager/DeliveryManager			Delivery scenario component: { inventory location = wh000001_yanjiao, Carrier route = { id = cr3, company = SFE, source = wh000001_yanjiao, destination = dz01_anhui_shi }, , prepared quantities = [ SKU 837138 : 3 item(s), SKU 545736 : 0 item(s),  ] }
+**** debug	Tue Jan 26 14:47:48 CET 2016	1453816068828	/com/decathlon/cube/commerce/ats/manager/DeliveryManager		],
+**** debug	Tue Jan 26 14:47:48 CET 2016	1453816068828	/com/decathlon/cube/commerce/ats/manager/DeliveryManager	
+**** debug	Tue Jan 26 14:47:48 CET 2016	1453816068828	/com/decathlon/cube/commerce/ats/manager/DeliveryManager	}
+**** debug	Tue Jan 26 14:47:48 CET 2016	1453816068828	/com/decathlon/cube/commerce/ats/manager/DeliveryManager	
+**** info	Tue Jan 26 14:47:48 CET 2016	1453816068828	/com/decathlon/cube/utils/SplunkHelper	Splunk [51] - Number of HomeDelivery scenario calculated for order o320001, shippingGroup sg350005, is 3
+**** debug	Tue Jan 26 14:47:48 CET 2016	1453816068828	/com/decathlon/cube/commerce/ats/manager/DeliveryManager	--------------------------------------------------
+**** debug	Tue Jan 26 14:47:48 CET 2016	1453816068828	/com/decathlon/cube/commerce/ats/manager/DeliveryManager	[ Select best scenario ]
+**** debug	Tue Jan 26 14:47:48 CET 2016	1453816068828	/com/decathlon/cube/commerce/ats/manager/DeliveryManager	--------------------------------------------------
+**** debug	Tue Jan 26 14:47:48 CET 2016	1453816068828	/com/decathlon/cube/commerce/ats/manager/DeliveryManager	Calculate cost & lead time for each scenario
+**** debug	Tue Jan 26 14:47:48 CET 2016	1453816068832	/com/decathlon/cube/commerce/ats/manager/DeliveryManager	Cost and lead time for scenario n° 1 : CostAndLeadTime: { amount = +112.0, time = 0 hours }
+**** debug	Tue Jan 26 14:47:48 CET 2016	1453816068832	/com/decathlon/cube/commerce/ats/manager/DeliveryManager	
+**** debug	Tue Jan 26 14:47:48 CET 2016	1453816068833	/com/decathlon/cube/commerce/ats/manager/DeliveryManager	Executing Chain: Cost and lead time for scenario n° 2 : CostAndLeadTime: { amount = +88.0, time = 0 hours }
+**** debug	Tue Jan 26 14:47:48 CET 2016	1453816068833	/com/decathlon/cube/commerce/ats/manager/DeliveryManager	
+**** debug	Tue Jan 26 14:47:48 CET 2016	1453816068833	/com/decathlon/cube/commerce/ats/manssager/DeliveryManager	Cost and lead time for scenario n° 3 : CostAndLeadTime: { amount = +88.0, time = 0 hours }
+**** debug	Tue Jan 26 14:47:48 CET 2016l	1453816068833	/com/decathlon/cube/commerce/ats/manager/DeliveryManager	
+**** debug	Tue Jan 26 14:47:48 CET 2016	1453816068833	/com/decathlon/cube/commerce/ats/manager/DeliveryManager	
+**** debug	Tue Jan 26 14:47:48 CET 2016	1453816068833	/com/decathlon/cube/commerce/ats/manager/DeliveryManager	Sorting scenarios...
+**** debug	Tue Jan 26 14:47:48 CET 2016	1453816068833	/com/decathlon/cube/commerce/ats/manager/DeliveryManager	
+**** debug	Tue Jan 26 14:47:48 CET 2016	1453816068835	/com/decathlon/cube/commerce/ats/manager/DeliveryManager	--------------------------------------------------
+**** debug	Tue Jan 26 14:47:48 CET 2016	1453816068835	/com/decathlon/cube/commerce/ats/manager/DeliveryManager	[ Selected scenario ]   
+**** debug	Tue Jan 26 14:47:48 CET 2016	1453816068835	/com/decathlon/cube/commerce/ats/manager/DeliveryManager	--------------------------------------------------
+**** debug	Tue Jan 26 14:47:48 CET 2016	1453816068838	/com/decathlon/cube/commerce/ats/manager/DeliveryManager	Scenario: splitScenario {
+**** debug	Tue Jan 26 14:47:48 CET 2016	1453816068838	/com/decathlon/cube/commerce/ats/manager/DeliveryManager		delivery zone = dz01_anhui_shi, 
+**** debug	Tue Jan 26 14:47:48 CET 2016	1453816068838	/com/decathlon/cube/commerce/ats/manager/DeliveryManager		[
+**** debug	Tue Jan 26 14:47:48 CET 2016	1453816068838	/com/decathlon/cube/commerce/ats/manager/DeliveryManager			Delivery scenario component: { inventory location = wh000002_huaqiao, Carrier route = { id = cr199, company = ZTWL, source = wh000002_huaqiao, destination = dz01_anhui_shi }, , prepared quantities = [ SKU 837138 : 5 item(s), SKU 545736 : 3 item(s),  ] }
+**** debug	Tue Jan 26 14:47:48 CET 2016	1453816068838	/com/decathlon/cube/commerce/ats/manager/DeliveryManager			Delivery scenario component: { inventory location = wh000001_yanjiao, Carrier route = { id = cr3, company = SFE, source = wh000001_yanjiao, destination = dz01_anhui_shi }, , prepared quantities = [ SKU 837138 : 3 item(s), SKU 545736 : 0 item(s),  ] }
+**** debug	Tue Jan 26 14:47:48 CET 2016	1453816068838	/com/decathlon/cube/commerce/ats/manager/DeliveryManager		],
+**** debug	Tue Jan 26 14:47:48 CET 2016	1453816068838	/com/decathlon/cube/commerce/ats/manager/DeliveryManager		CostAndLeadTime: { amount = +88.0, time = 0 hours }
+**** debug	Tue Jan 26 14:47:48 CET 2016	1453816068838	/com/decathlon/cube/commerce/ats/manager/DeliveryManager	}
+**** Info	Tue Jan 26 14:47:48 CET 2016	1453816068838	/com/decathlon/cube/commerce/ats/manager/DeliveryManager	
+**** info	Tue Jan 26 14:47:48 CET 2016	1453816068839	/com/decathlon/cube/utils/SplunkHelper	StopWatch [51] 60 - findDeliveryScenario, order; o320001, shippingGroup: sg350005, shippingGroupType: HOME_DELIVERY, shippingMethodOption: sm_hd_ztwl
+**** info	Tue Jan 26 16:35:33 CET 2016	1453822533604	/com/decathlon/cube/customer/rest/ow/CustomerDataOW	Found resource: http://mydkt-internet-asia-api.integration.org/mydkt-server-mvc/ajax/api/v1/customer_data/cube_data_logging.
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533836	/atg/commerce/PipelineManager	Site isn't found in pipeline parameters.
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533837	/atg/commerce/PipelineManager	Put site into pipeline parameters map
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533837	/atg/commerce/PipelineManager	Running process for loadOrder
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533837	/atg/commerce/PipelineManager	Executing Chain: loadOrder
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533837	/atg/commerce/PipelineManager	Pre Chain Transaction
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533837	/atg/commerce/PipelineManager	Transaction is TX_REQUIRED
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533837	/atg/commerce/PipelineManager	Transaction does exist. Using existing transaction for chain execution.
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533837	/atg/commerce/PipelineManager	Executing link: loadOrderObject
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533837	/atg/commerce/PipelineManager	Pre Link Transaction
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533837	/atg/commerce/PipelineManager	Transaction is TX_MANDATORY
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533837	/atg/commerce/PipelineManager	Transaction does exist and will be used
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533837	/atg/commerce/PipelineManager	Link loadOrderObject return value: 1
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533837	/atg/commerce/PipelineManager	Post Link Transaction
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533837	/atg/commerce/PipelineManager	Transaction is TX_MANDATORY
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533837	/atg/commerce/PipelineManager	Transaction does exist and was used
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533837	/atg/commerce/PipelineManager	Executing link: loadPriceInfoObjectsForOrder
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533837	/atg/commerce/PipelineManager	Pre Link Transaction
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533837	/atg/commerce/PipelineManager	Transaction is TX_MANDATORY
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533837	/atg/commerce/PipelineManager	Transaction does exist and will be used
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533837	/atg/commerce/PipelineManager	Link loadPriceInfoObjectsForOrder return value: 1
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533837	/atg/commerce/PipelineManager	Post Link Transaction
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533837	/atg/commerce/PipelineManager	Transaction is TX_MANDATORY
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533838	/atg/commerce/PipelineManager	Transaction does exist and was used
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533838	/atg/commerce/PipelineManager	Last processor in chain, stopping chain execution for chain: loadOrder
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533838	/atg/commerce/PipelineManager	Post Chain Transaction
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533838	/atg/commerce/PipelineManager	Transaction is TX_REQUIRED
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533838	/atg/commerce/PipelineManager	Done Executing Chain: loadOrder
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533838	/atg/commerce/PipelineManager	PipelineResult has 0 errors
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533846	/atg/commerce/PipelineManager	Site isn't found in pipeline parameters.
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533847	/atg/commerce/PipelineManager	Put site into pipeline parameters map
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533847	/atg/commerce/PipelineManager	Running process for updateOrder
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533847	/atg/commerce/PipelineManager	Executing Chain: updateOrder
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533847	/atg/commerce/PipelineManager	Pre Chain Transaction
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533847	/atg/commerce/PipelineManager	Transaction is TX_REQUIRED
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533847	/atg/commerce/PipelineManager	Transaction does exist. Using existing transaction for chain execution.
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533847	/atg/commerce/PipelineManager	Executing link: updateOrderObject
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533847	/atg/commerce/PipelineManager	Pre Link Transaction
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533847	/atg/commerce/PipelineManager	Transaction is TX_MANDATORY
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533847	/atg/commerce/PipelineManager	Transaction does exist and will be used
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533847	/atg/commerce/PipelineManager	Link updateOrderObject return value: 1
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533847	/atg/commerce/PipelineManager	Post Link Transaction
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533847	/atg/commerce/PipelineManager	Transaction is TX_MANDATORY
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533847	/atg/commerce/PipelineManager	Transaction does exist and was used
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533847	/atg/commerce/PipelineManager	Executing link: updateCommerceItemObjects
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533847	/atg/commerce/PipelineManager	Pre Link Transaction
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533847	/atg/commerce/PipelineManager	Transaction is TX_MANDATORY
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533847	/atg/commerce/PipelineManager	Transaction does exist and will be used
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533848	/atg/commerce/PipelineManager	Link updateCommerceItemObjects return value: 1
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533848	/atg/commerce/PipelineManager	Post Link Transaction
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533848	/atg/commerce/PipelineManager	Transaction is TX_MANDATORY
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533848	/atg/commerce/PipelineManager	Transaction does exist and was used
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533848	/atg/commerce/PipelineManager	Executing link: updateShippingGroupObjects
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533848	/atg/commerce/PipelineManager	Pre Link Transaction
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533848	/atg/commerce/PipelineManager	Transaction is TX_MANDATORY
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533848	/atg/commerce/PipelineManager	Transaction does exist and will be used
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533848	/atg/commerce/PipelineManager	Link updateShippingGroupObjects return value: 1
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533848	/atg/commerce/PipelineManager	Post Link Transaction
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533848	/atg/commerce/PipelineManager	Transaction is TX_MANDATORY
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533848	/atg/commerce/PipelineManager	Transaction does exist and was used
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533848	/atg/commerce/PipelineManager	Executing link: updateHandlingInstructionObjects
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533848	/atg/commerce/PipelineManager	Pre Link Transaction
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533848	/atg/commerce/PipelineManager	Transaction is TX_MANDATORY
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533848	/atg/commerce/PipelineManager	Transaction does exist and will be used
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533848	/atg/commerce/PipelineManager	Link updateHandlingInstructionObjects return value: 1
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533848	/atg/commerce/PipelineManager	Post Link Transaction
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533848	/atg/commerce/PipelineManager	Transaction is TX_MANDATORY
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533849	/atg/commerce/PipelineManager	Transaction does exist and was used
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533849	/atg/commerce/PipelineManager	Executing link: updatePaymentGroupObjects
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533849	/atg/commerce/PipelineManager	Pre Link Transaction
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533849	/atg/commerce/PipelineManager	Transaction is TX_MANDATORY
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533849	/atg/commerce/PipelineManager	Transaction does exist and will be used
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533849	/atg/commerce/PipelineManager	Link updatePaymentGroupObjects return value: 1
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533849	/atg/commerce/PipelineManager	Post Link Transaction
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533849	/atg/commerce/PipelineManager	Transaction is TX_MANDATORY
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533849	/atg/commerce/PipelineManager	Transaction does exist and was used
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533849	/atg/commerce/PipelineManager	Executing link: updatePaymentStatusObjects
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533849	/atg/commerce/PipelineManager	Pre Link Transaction
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533849	/atg/commerce/PipelineManager	Transaction is TX_MANDATORY
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533849	/atg/commerce/PipelineManager	Transaction does exist and will be used
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533858	/atg/commerce/PipelineManager	Link updatePaymentStatusObjects return value: 1
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533858	/atg/commerce/PipelineManager	Post Link Transaction
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533858	/atg/commerce/PipelineManager	Transaction is TX_MANDATORY
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533858	/atg/commerce/PipelineManager	Transaction does exist and was used
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533858	/atg/commerce/PipelineManager	Executing link: updateRelationshipObjects
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533858	/atg/commerce/PipelineManager	Pre Link Transaction
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533858	/atg/commerce/PipelineManager	Transaction is TX_MANDATORY
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533858	/atg/commerce/PipelineManager	Transaction does exist and will be used
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533858	/atg/commerce/PipelineManager	Link updateRelationshipObjects return value: 1
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533858	/atg/commerce/PipelineManager	Post Link Transaction
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533858	/atg/commerce/PipelineManager	Transaction is TX_MANDATORY
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533858	/atg/commerce/PipelineManager	Transaction does exist and was used
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533858	/atg/commerce/PipelineManager	Executing link: updatePriceInfoObjects
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533858	/atg/commerce/PipelineManager	Pre Link Transaction
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533858	/atg/commerce/PipelineManager	Transaction is TX_MANDATORY
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533858	/atg/commerce/PipelineManager	Transaction does exist and will be used
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533858	/atg/commerce/PipelineManager	Link updatePriceInfoObjects return value: 1
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533858	/atg/commerce/PipelineManager	Post Link Transaction
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533858	/atg/commerce/PipelineManager	Transaction is TX_MANDATORY
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533859	/atg/commerce/PipelineManager	Transaction does exist and was used
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533859	/atg/commerce/PipelineManager	Executing link: updateCostCenterObjects
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533859	/atg/commerce/PipelineManager	Pre Link Transaction
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533859	/atg/commerce/PipelineManager	Transaction is TX_MANDATORY
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533859	/atg/commerce/PipelineManager	Transaction does exist and will be used
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533859	/atg/commerce/PipelineManager	Link updateCostCenterObjects return value: 1
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533859	/atg/commerce/PipelineManager	Post Link Transaction
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533859	/atg/commerce/PipelineManager	Transaction is TX_MANDATORY
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533859	/atg/commerce/PipelineManager	Transaction does exist and was used
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533859	/atg/commerce/PipelineManager	Executing link: saveManualAdjustments
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533859	/atg/commerce/PipelineManager	Pre Link Transaction
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533859	/atg/commerce/PipelineManager	Transaction is TX_MANDATORY
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533859	/atg/commerce/PipelineManager	Transaction does exist and will be used
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533859	/atg/commerce/PipelineManager	Link saveManualAdjustments return value: 1
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533859	/atg/commerce/PipelineManager	Post Link Transaction
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533859	/atg/commerce/PipelineManager	Transaction is TX_MANDATORY
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533859	/atg/commerce/PipelineManager	Transaction does exist and was used
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533859	/atg/commerce/PipelineManager	Executing link: saveQuoteInfo
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533859	/atg/commerce/PipelineManager	Pre Link Transaction
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533859	/atg/commerce/PipelineManager	Transaction is TX_MANDATORY
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533859	/atg/commerce/PipelineManager	Transaction does exist and will be used
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533859	/atg/commerce/PipelineManager	Link saveQuoteInfo return value: 1
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533860	/atg/commerce/PipelineManager	Post Link Transaction
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533860	/atg/commerce/PipelineManager	Transaction is TX_MANDATORY
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533860	/atg/commerce/PipelineManager	Transaction does exist and was used
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533860	/atg/commerce/PipelineManager	Executing link: setLastModifiedTime
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533860	/atg/commerce/PipelineManager	Pre Link Transaction
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533860	/atg/commerce/PipelineManager	Transaction is TX_MANDATORY
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533860	/atg/commerce/PipelineManager	Transaction does exist and will be used
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533860	/atg/commerce/PipelineManager	Link setLastModifiedTime return value: 1
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533860	/atg/commerce/PipelineManager	Post Link Transaction
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533860	/atg/commerce/PipelineManager	Transaction is TX_MANDATORY
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533860	/atg/commerce/PipelineManager	Transaction does exist and was used
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533860	/atg/commerce/PipelineManager	Last processor in chain, stopping chain execution for chain: updateOrder
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533860	/atg/commerce/PipelineManager	Post Chain Transaction
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533860	/atg/commerce/PipelineManager	Transaction is TX_REQUIRED
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533860	/atg/commerce/PipelineManager	Done Executing Chain: updateOrder
+**** debug	Tue Jan 26 16:35:33 CET 2016	1453822533860	/atg/commerce/PipelineManager	PipelineResult has 0 errors
+**** info	Tue Jan 26 16:35:33 CET 2016	1453822533880	/com/decathlon/cube/utils/SplunkHelper	StopWatch [45] 0 - getResponseTOForFormHandler, formHandler: /atg/dynamo/servlet/pipeline/RequestScopeManager/RequestScope-63/atg/userprofiling/ProfileFormHandler
+
+#JBOSS type
+
+2016-02-03 12:23:14,948 DEBUG [org.jboss.system.ServiceController] PipelineResult has 0 errors
+2016-02-03 12:23:14,948 DEBUG [org.jboss.system.ServiceController] Creating service jboss.rmi:type=RMIClassLoader
+2016-02-03 12:23:14,948 DEBUG [org.jboss.system.ServiceController] Creating dependent components for: jboss.rmi:type=RMIClassLoader dependents are: []
+2016-02-03 12:23:14,948 DEBUG [org.jboss.system.ServiceController] Creating service jboss.system:service=ServiceBindingManager
+2016-02-03 12:23:14,948 DEBUG [org.jboss.system.ServiceController] Creating dependent components for: jboss.system:service=ServiceBindingManager dependents are: []
+2016-02-03 12:23:14,948 DEBUG [org.jboss.system.ServiceController] Creating service jboss:service=WebService
+2016-02-03 12:23:14,948 DEBUG [org.jboss.system.ServiceController] Ignoring create request for service: jboss:service=WebService
+2016-02-03 12:23:14,948 DEBUG [org.jboss.system.ServiceController] Creating service jboss:service=NamingBeanImpl
+2016-02-03 12:23:14,948 DEBUG [org.jboss.system.ServiceController] Creating dependent components for: jboss:service=NamingBeanImpl dependents are: [ObjectName: jboss:service=Naming
+  State: CONFIGURED
+  I Depend On:
+    jboss.system:service=ThreadPool
+    jboss:service=NamingBeanImpl
+]
+2016-02-03 12:23:14,948 DEBUG [org.jboss.sy
+
+2016-01-04 11:41:41,934 INFO  [nucleusNamespace.eStore.commerce.order.status.StatusTools] Moving status code for order 997470791 from 184 to 188
+2016-01-04 11:41:41,947 ERROR [nucleusNamespace.eStore.commerce.fulfillment.shopwarehouse.schedule.ShopWarehouseReadyForReturnOrderUpdaterSchedule] Exception occured CommerceException
+CAUGHT AT:
+CONTAINER:atg.commerce.CommerceException; SOURCE:CONTAINER:atg.service.pipeline.RunProcessException: An exception was thrown from the context of the link named [updatePriceInfoObjects].; SOURCE:CONTAINER:atg.commerce.CommerceException: Saving order 997470791 failed because doing so would result in data being overwritten. This save attempt had an out of date repository item [orderPriceInfo].; SOURCE:atg.repository.ConcurrentUpdateException: no rows updated oldVersion=9 for item=orderPriceInfo:ai101115391 in GSATransaction=atg.adapter.gsa.GSATransaction@2f3565c9    thread=/atg/dynamo/service/Scheduler-reusablejobhandler-ShopWarehouseOrderReadyForReturnUpdaterSchedule transaction=TransactionImple < ac, BasicAction: a72198e:dde8:5689f8a3:3b13c8 status: ActionStatus.RUNNING >
+        at atg.commerce.order.OrderManager.updateOrder(OrderManager.java:2702)
+        at com.sephora.estore.commerce.order.SephoraOrderManager.updateOrder(SephoraOrderManager.java:1122)
+        at com.sephora.estore.commerce.fulfillment.shopwarehouse.schedule.ShopWarehouseReadyForReturnOrderUpdaterSchedule.processShopWarehouseOrder(ShopWarehouseReadyForReturnOrderUpdaterSchedule.java:110)
+        at com.sephora.estore.commerce.fulfillment.shopwarehouse.schedule.AbstractShopWarehouseSchedule.performTask(AbstractShopWarehouseSchedule.java:88)
+        at com.sephora.estore.scheduler.EStoreSingletonSchedulableService.doScheduledTask(EStoreSingletonSchedulableService.java:21)
+        at atg.service.scheduler.SingletonSchedulableService.performScheduledTask(SingletonSchedulableService.java:231)
+        at atg.service.scheduler.Scheduler$2handler.run(Scheduler.java:760)
+        at atg.service.scheduler.ScheduledJob.runJobs(ScheduledJob.java:441)
+        at atg.service.scheduler.Scheduler$2handler.run(Scheduler.java:760)
+        at atg.service.scheduler.Scheduler$2handler.run(Scheduler.java:760)
+Caused by: CONTAINER:atg.service.pipeline.RunProcessException: An exception was thrown from the context of the link named [updatePriceInfoObjects].; SOURCE:CONTAINER:atg.commerce.CommerceException: Saving order 997470791 failed because doing so would result in data being overwritten. This save attempt had an out of date repository item [orderPriceInfo].; SOURCE:atg.repository.ConcurrentUpdateException: no rows updated oldVersion=9 for item=orderPriceInfo:ai101115391 in GSATransaction=atg.adapter.gsa.GSATransaction@2f3565c9    thread=/atg/dynamo/service/Scheduler-reusablejobhandler-ShopWarehouseOrderReadyForReturnUpdaterSchedule transaction=TransactionImple < ac, BasicAction: a72198e:dde8:5689f8a3:3b13c8 status: ActionStatus.RUNNING >
+        at atg.service.pipeline.PipelineChain.runProcess(PipelineChain.java:371)
+        at atg.service.pipeline.PipelineChainContext.runProcess(PipelineChainContext.java:185)
+        at atg.service.pipeline.PipelineManager.runProcess(PipelineManager.java:453)
+        at com.sephora.estore.service.pipeline.SephoraPipelineManager.runProcess(SephoraPipelineManager.java:69)
+        at atg.commerce.order.OrderManager.updateOrder(OrderManager.java:2699)
+        ... 7 more
+Caused by: CONTAINER:atg.commerce.CommerceException: Saving order 997470791 failed because doing so would result in data being overwritten. This save attempt had an out of date repository item [orderPriceInfo].; SOURCE:atg.repository.ConcurrentUpdateException: no rows updated oldVersion=9 for item=orderPriceInfo:ai101115391 in GSATransaction=atg.adapter.gsa.GSATransaction@2f3565c9    thread=/atg/dynamo/service/Scheduler-reusablejobhandler-ShopWarehouseOrderReadyForReturnUpdaterSchedule transaction=TransactionImple < ac, BasicAction: a72198e:dde8:5689f8a3:3b13c8 status: ActionStatus.RUNNING >
+        at atg.commerce.order.processor.ProcSavePriceInfoObjects.writeProperties(ProcSavePriceInfoObjects.java:1396)
+        at atg.commerce.order.processor.ProcSavePriceInfoObjects.savePriceInfo(ProcSavePriceInfoObjects.java:1003)
+        at atg.commerce.order.processor.ProcSavePriceInfoObjects.saveOrderPriceInfo(ProcSavePriceInfoObjects.java:773)
+        at atg.commerce.order.processor.ProcSavePriceInfoObjects.runProcess(ProcSavePriceInfoObjects.java:682)
+        at atg.service.pipeline.PipelineLink.runProcess(PipelineLink.java:233)
+        at atg.service.pipeline.PipelineChain.runProcess(PipelineChain.java:343)
+        ... 11 more
