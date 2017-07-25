@@ -2,34 +2,34 @@
 
 // **** debug   Tue Jan 26 16:35:33 CET 2016    1453822533848   /atg/commerce/PipelineManager   Post Link Transaction
 
-LINE = l:( LOG / NUCLEUS_STARTED / FAILSAFE)  {return l}
+LINE = l:( LOG / NUCLEUS_STARTED / FAILSAFE)  { return l }
 
 LOG
  =  start:LOG_START _ message:MESSAGE{
  return {level: start.level, value: text()};
  }
  
- NUCLEUS_STARTED
+NUCLEUS_STARTED
   = _ "Nucleus running, app server startup continuing" _ {
     return {level:'special', value:text(), unique:true}
   }
 
-  FAILSAFE
+FAILSAFE
    = ANY {return {value:text(),failsafe:true}}
  
- LOG_START = DYNAMO_LOG_START
+LOG_START = DYNAMO_LOG_START
  
- DYNAMO_LOG_START
+DYNAMO_LOG_START
   = LOG_PREFIX? _ level:LEVEL _ date:TIMESTAMP _ process:INTEGER _ component:PATH 
   { return {level}}
     
- MESSAGE "logMessage"
-  =  ANY
+MESSAGE "logMessage"
+  =  ANY  
  
- WORD "WORD"
+WORD "WORD"
   =$[^ ]+
   
- LOG_PREFIX "log prefix"
+LOG_PREFIX "log prefix"
   = "****"
   
 LEVEL = ERROR / DEBUG / INFO / TRACE
@@ -46,10 +46,10 @@ INFO "level: info"
 TRACE "level: trace"
   = "trace"i  {return 'trace'}
 
- NODE "NODE"
+NODE "NODE"
   =$[^ /]+
  
- PATH "PATH"
+PATH "PATH"
   =$ ("/" NODE)+
 
 TIMESTAMP "TIMESTAMP"
@@ -67,5 +67,5 @@ Digit "digit"
 _ "whitespace"
   = [ \t\n\r]* {return null}
   
-  ANY "any"
+ANY "any"
    = .*

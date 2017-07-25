@@ -46,17 +46,18 @@ export class Colorizer {
 
 
         let res = line;
-        let parsed:any;
+        let parsed: any;
 
         try {
 
             parsed = parser.parse(line);
             if (parsed) {
-                delete parsed.value
-                logger.debug(parsed);
-                if (!_.isNil(parsed.level)){
+                if (!_.isNil(parsed.level)) {
                     this.context = parsed.level;//keep context for lines without level
                 }
+                line = this.getValue(parsed);
+                delete parsed.value //remove value for easier log
+                logger.debug(parsed);
             }
         } catch (e) {
             logger.debug(e);
@@ -74,6 +75,23 @@ export class Colorizer {
 
         console.log(res);
 
+    }
+
+    private getValue(parsed: any): string {
+        let value = parsed.value;
+        if (typeof value == 'string') {
+            return value;
+        } else if (value instanceof String) {
+            return value.toString();
+        } else {
+            _.reduce<any, string>(value,
+                (accumulator: string, val: any) => {
+                    return accumulator + this.getValue(val);
+                },
+                ''
+            )
+        }
+        return parsed.value;
     }
 
 }
