@@ -6,7 +6,7 @@ LINE = l:( LOG / NUCLEUS_STARTED / FAILSAFE)  { return l }
 
 LOG
  =  start:LOG_START _ message:MESSAGE{
- return {level: start.level, value: text()};
+ return {level: start.level, value: [ start, message]};
  }
  
 NUCLEUS_STARTED
@@ -20,14 +20,25 @@ FAILSAFE
 LOG_START = DYNAMO_LOG_START
  
 DYNAMO_LOG_START
-  = LOG_PREFIX? _ level:LEVEL _ date:TIMESTAMP _ process:INTEGER _ component:PATH 
-  { return {level}}
+  = LOG_PREFIX? _ level:LEVEL _ date:TIMESTAMP _ process:INTEGER _ component:COMPONENT 
+  { return {level:level, value: [level,date,component]}}
+
+
+COMPONENT
+   = PATH {
+     return {
+       value:text(),
+       level:'component'
+     }
+   }
     
 MESSAGE "logMessage"
-  =  ANY  
+  =  ANY  {
+    return {value:text()}
+  }
  
 WORD "WORD"
-  =$[^ ]+
+  =$[^ \t\n\r]+
   
 LOG_PREFIX "log prefix"
   = "****"
@@ -47,7 +58,7 @@ TRACE "level: trace"
   = "trace"i  {return 'trace'}
 
 NODE "NODE"
-  =$[^ /]+
+  =$[^ \t\n\r/]+
  
 PATH "PATH"
   =$ ("/" NODE)+
@@ -65,7 +76,7 @@ Digit "digit"
  =$ [0-9]
 
 _ "whitespace"
-  = [ \t\n\r]* {return null}
+  = [ \t\n\r]* {return ' '}
   
 ANY "any"
    = .*

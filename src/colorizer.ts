@@ -27,6 +27,9 @@ export class Colorizer {
             },
             special: {
                 color: chalk.magenta
+            },
+            component: {
+                color: chalk.blue
             }
         }
     }
@@ -56,8 +59,8 @@ export class Colorizer {
                     this.context = parsed.level;//keep context for lines without level
                 }
                 line = this.getValue(parsed);
-                delete parsed.value //remove value for easier log
-                logger.debug(parsed);
+                //     delete parsed.text //remove lon for easier log
+                logger.debug(JSON.stringify(parsed));
             }
         } catch (e) {
             logger.debug(e);
@@ -66,7 +69,7 @@ export class Colorizer {
 
         if (this.context) {
 
-            res = this.config.patterns[this.context].color(line);
+            res = this.applyColor(line, this.context);
         }
         //reset
         if (parsed && parsed.unique === true) {
@@ -77,21 +80,45 @@ export class Colorizer {
 
     }
 
+    private applyColor(msg: string, level: string) {
+        return this.config.patterns[level].color(msg);
+    }
+
     private getValue(parsed: any): string {
-        let value = parsed.value;
-        if (typeof value == 'string') {
-            return value;
-        } else if (value instanceof String) {
-            return value.toString();
+        logger.silly('parsed %s', JSON.stringify(parsed));
+        let ret = '';
+        if (parsed) {
+
+            if (typeof parsed == 'string') {
+                ret = parsed;
+            } else if (parsed instanceof String) {
+                ret = parsed.toString();
+            } else if (Array.isArray(parsed)) {
+                ret = _.reduce<any, string>(parsed,
+                    (accumulator: string, val: any) => {
+                        let subRet = this.getValue(val);
+                        if (accumulator) {
+                            return accumulator + '\t' + subRet
+
+                        } else {
+                            return subRet;
+                        }
+                    },
+                    null
+                )
+            } else {
+                ret = this.getValue(parsed.value)
+                let level = parsed.level;
+                if (level) {
+                    ret = this.applyColor(ret, level);
+                }
+            }
         } else {
-            _.reduce<any, string>(value,
-                (accumulator: string, val: any) => {
-                    return accumulator + this.getValue(val);
-                },
-                ''
-            )
+            ret = '';
         }
-        return parsed.value;
+        logger.silly('ret = %s', ret);
+        return ret;
+
     }
 
 }
