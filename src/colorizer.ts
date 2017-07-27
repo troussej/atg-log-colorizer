@@ -28,8 +28,9 @@ export class Colorizer {
             warning: chalk.yellow,
             error: chalk.red,
             keyword: chalk.magenta,
-            component: chalk.underline,
-            chain: chalk.cyan
+          //  component: chalk.underline,
+            chain: chalk.cyan,
+         //   levelType:chalk.inverse
         }
     }
 

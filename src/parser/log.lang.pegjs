@@ -21,18 +21,18 @@ LOG_START = DYNAMO_LOG_START /DOZER_LOG_START/JBOSS_LOG_START
  
 DYNAMO_LOG_START
   = LOG_PREFIX? _ level:LEVEL _ date:TIMESTAMP _ process:INTEGER _ component:COMPONENT 
-  { return {level:level, value: [level,'\t',date,'\t',component]}}
+  { return {level:level.value, value: [level,'\t',date,'\t',component]}}
 
 // 2016-02-03 12:23:14,948 DEBUG [org.jboss.system.ServiceController] PipelineResult has 0 errors
 JBOSS_LOG_START
  = date:$(WORD _ WORD) _ level:LEVEL _ "["? classname:CLASS "]"? {
-   return {value: [date, '\t',level,'\t', '[',classname,']'] , level:level}
+   return {value: [date, '\t',level,'\t', '[',classname,']'] , level:level.value}
  }
 
 // <Jul 26, 2017 10:50:54 PM CEST> <Warning>
 DOZER_LOG_START
   = "<" date:[^>]+ ">" _ "<" level:LEVEL ">"{
-  return {value:text(), level:level}
+  return {value:text(), level:level.value}
  }
 
 CLASS
@@ -121,25 +121,25 @@ LOG_PREFIX "log prefix"
 LEVEL = ERROR / DEBUG / INFO / TRACE / WARNING
   
 DEBUG "level: debug"
-  = "debug"i {return 'debug'}
+  = "debug"i {return { value:'debug', level:'levelType'}}
   
  WARNING "level: warning"
-  = "warn"i "ing"i? {return 'warning'}
+  = "warn"i "ing"i? {return { value:'warning', level:'levelType'}}
 
 ERROR "level: error"
-  = "err"i "or"i?  {return 'error'}
+  = "err"i "or"i? {return { value:'error', level:'levelType'}}
 
 INFO "level: info"
-  = "info"i  {return 'info'}
+  = "info"i  {return { value:'info', level:'levelType'}}
 
 TRACE "level: trace"
-  = "trace"i  {return 'trace'}
+  = "trace"i  {return { value:'trace', level:'levelType'}}
 
 NODE "NODE"
   =$[^ \t\n\r/]+
  
 PATH "PATH"
-  =$ ("/" NODE)+
+  =$ ("/" NODE)+ / NODE
 
 TIMESTAMP "TIMESTAMP"
      = $(WORD _ WORD _ INTEGER _ Digit Digit ":" Digit Digit ":" Digit Digit _ WORD _ INTEGER)

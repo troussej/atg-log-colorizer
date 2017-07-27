@@ -25,6 +25,7 @@
 **** debug  Tue Jan 26 16:35:33 CET 2016    1453822533837   /atg/commerce/PipelineManager   Transaction is TX_MANDATORY
 **** debug  Tue Jan 26 16:35:33 CET 2016    1453822533838   /atg/commerce/PipelineManager   Transaction does exist and was used
 **** debug  Tue Jan 26 16:35:33 CET 2016    1453822533838   /atg/commerce/PipelineManager   Last processor in chain, stopping chain execution for chain: loadOrder
+**** info   Thu Jul 27 17:49:45 CEST 2017   1501170585904   SmartCache  test31_order
 
 2016-01-04 11:41:41,947 ERROR [nucleusNamespace.eStore.commerce.fulfillment.shopwarehouse.schedule.ShopWarehouseReadyForReturnOrderUpdaterSchedule] Exception occured CommerceException
 CAUGHT AT:
