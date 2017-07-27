@@ -28,6 +28,9 @@ export class Colorizer {
             special: {
                 color: chalk.magenta
             },
+            keyword: {
+                color: chalk.yellow
+            },
             component: {
                 color: chalk.blue
             }

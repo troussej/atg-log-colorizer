@@ -5,7 +5,7 @@
 LINE = l:( LOG / NUCLEUS_STARTED / FAILSAFE)  { return l }
 
 LOG
- =  start:LOG_START _ message:MESSAGE{
+ =  start:LOG_START _ message:(MESSAGE/ANY){
  return {level: start.level, value: [ start, message]};
  }
  
@@ -31,11 +31,24 @@ COMPONENT
        level:'component'
      }
    }
+
+
     
 MESSAGE "logMessage"
-  =  ANY  {
-    return {value:text()}
+  =  elements:( SYMBOL _? ) *   {
+  	let value = elements.map( elem => elem[0] , elem[1])
+    return {value:value, type:'message'}
   }
+
+
+
+SYMBOL
+ = KEYWORD / WORD
+
+KEYWORD
+ = "order" {
+ 	return {value:text(),level:'keyword'}
+ }
  
 WORD "WORD"
   =$[^ \t\n\r]+
@@ -76,7 +89,7 @@ Digit "digit"
  =$ [0-9]
 
 _ "whitespace"
-  = [ \t\n\r]* {return ' '}
+  = $[ \t\n\r]*
   
 ANY "any"
    = .*
