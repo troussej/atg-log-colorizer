@@ -17,12 +17,28 @@ NUCLEUS_STARTED
 FAILSAFE
    = ANY {return {value:text(),failsafe:true}}
  
-LOG_START = DYNAMO_LOG_START
+LOG_START = DYNAMO_LOG_START /DOZER_LOG_START/JBOSS_LOG_START
  
 DYNAMO_LOG_START
   = LOG_PREFIX? _ level:LEVEL _ date:TIMESTAMP _ process:INTEGER _ component:COMPONENT 
   { return {level:level, value: [level,'\t',date,'\t',component]}}
 
+// 2016-02-03 12:23:14,948 DEBUG [org.jboss.system.ServiceController] PipelineResult has 0 errors
+JBOSS_LOG_START
+ = date:$(WORD _ WORD) _ level:LEVEL _ "["? classname:CLASS "]"? {
+   return {value: [date, '\t',level,'\t', '[',classname,']'] , level:level}
+ }
+
+// <Jul 26, 2017 10:50:54 PM CEST> <Warning>
+DOZER_LOG_START
+  = "<" date:[^>]+ ">" _ "<" level:LEVEL ">"{
+  return {value:text(), level:level}
+ }
+
+CLASS
+ = ([a-zA-Z0-9]+ ".")* [[a-zA-Z0-9]+ {
+  return {value:text(),type:'component'}
+ }
 
 COMPONENT
    = PATH {
@@ -89,10 +105,10 @@ ANY_MESSAGE "logMessage"
 
 
 SYMBOL
- = KEYWORD / WORD
+ =  KEYWORD / WORD
 
 KEYWORD
- = "order" {
+ = "order"i _ [=:]? _ WORD {
   return {value:text(),level:'keyword'}
  }
  

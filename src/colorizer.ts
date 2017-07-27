@@ -28,7 +28,7 @@ export class Colorizer {
             warning: chalk.yellow,
             error: chalk.red,
             keyword: chalk.magenta,
-            component: chalk.blue,
+            component: chalk.underline,
             chain: chalk.cyan
         }
     }
