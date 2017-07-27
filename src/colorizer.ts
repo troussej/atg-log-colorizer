@@ -3,8 +3,17 @@ const readline = require('readline');
 import * as chalk from 'chalk';
 import * as _ from 'lodash';
 import * as parser from './parser/log.lang';
-import * as logger from 'winston';
-logger.level = process.env.LOG_LEVEL
+import * as winston from 'winston';
+
+const logger = new (winston.Logger)({
+    level: process.env.LOG_LEVEL,
+    transports: [
+        // colorize the output to the console
+        new (winston.transports.Console)({ colorize: true })
+    ]
+});
+
+
 
 export class Colorizer {
 
@@ -13,27 +22,14 @@ export class Colorizer {
 
     config: any = {
         patterns: {
-            debug: {
-                color: chalk.white
-            },
-            trace: {
-                color: chalk.grey
-            },
-            info: {
-                color: chalk.green
-            },
-            error: {
-                color: chalk.red
-            },
-            special: {
-                color: chalk.magenta
-            },
-            keyword: {
-                color: chalk.yellow
-            },
-            component: {
-                color: chalk.blue
-            }
+            debug:  chalk.white,
+            trace: chalk.grey,
+            info: chalk.green,
+            warning: chalk.yellow,
+            error: chalk.red,
+            keyword: chalk.magenta,
+            component: chalk.blue,
+            chain: chalk.cyan
         }
     }
 
@@ -63,6 +59,7 @@ export class Colorizer {
                 }
                 line = this.getValue(parsed);
                 //     delete parsed.text //remove lon for easier log
+
                 logger.debug(JSON.stringify(parsed));
             }
         } catch (e) {
@@ -84,7 +81,12 @@ export class Colorizer {
     }
 
     private applyColor(msg: string, level: string) {
-        return this.config.patterns[level].color(msg);
+        if (this.config.patterns[level]) {
+
+            return this.config.patterns[level](msg);
+        } else {
+            return msg;
+        }
     }
 
     private getValue(parsed: any): string {
@@ -101,7 +103,7 @@ export class Colorizer {
                     (accumulator: string, val: any) => {
                         let subRet = this.getValue(val);
                         if (accumulator) {
-                            return accumulator + '\t' + subRet
+                            return accumulator + subRet
 
                         } else {
                             return subRet;

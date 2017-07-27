@@ -1,1 +1,26 @@
 **** debug	Tue Jan 26 14:47:48 CET 2016	1453816068828	/com/decathlon/cube/commerce/ats/manager/DeliveryManager	order is stuff order test
+**** Error  Wed Jul 26 22:50:26 CEST 2017   1501102226885   /com/decathlon/cube/repository/referential/ReferentialRepository        Table 'CUBE_RELAY_POINT_OH_TYPE' in item-descriptor: 'relayPointDataOpeningHour' does not exist in a table space accessible by the data source.  DatabaseMetaData.getColumns returns no columns.  Catalog=null Schema=NL_SIT_CUBE_AGENT
+**** Warning        Wed Jul 26 22:50:44 CEST 2017   1501102244864   /atg/dynamo/messaging/MessagingManager  Disabling rollback logging for InputDestinationConsumer in order to reduce clutter. Set disableDebugTracesForRollbacksForInputDestinationConsumer on /atg/dynamo/messaging/MessagingManager to false to re-enable for InputDestinationConsumer.
+<Jul 26, 2017 10:50:54 PM CEST> <Warning> <org.dozer.config.GlobalSettings> <BEA-000000> <Dozer configuration file not found: dozer.properties.  Using defaults for all Dozer global properties.> 
+**** Warning        Wed Jul 26 22:51:19 CEST 2017   1501102279511   /atg/endeca/index/IndexingApplicationConfiguration      Will set Endeca CXF logging (org.apache.cxf.interceptor.LoggingInInterceptor and org.apache.cxf.interceptor.LoggingOutInterceptor) to level WARNING. Set cxfLogLevelOverride property of this component to null to disable, otherwise this setting will be re-applied on each index.
+**** debug  Tue Jan 26 16:35:33 CET 2016    1453822533837   /atg/commerce/PipelineManager   Executing Chain: loadOrder
+**** debug  Tue Jan 26 16:35:33 CET 2016    1453822533837   /atg/commerce/PipelineManager   Pre Chain Transaction
+**** debug  Tue Jan 26 16:35:33 CET 2016    1453822533837   /atg/commerce/PipelineManager   Transaction is TX_REQUIRED
+**** debug  Tue Jan 26 16:35:33 CET 2016    1453822533837   /atg/commerce/PipelineManager   Transaction does exist. Using existing transaction for chain execution.
+**** debug  Tue Jan 26 16:35:33 CET 2016    1453822533837   /atg/commerce/PipelineManager   Executing link: loadOrderObject
+**** debug  Tue Jan 26 16:35:33 CET 2016    1453822533837   /atg/commerce/PipelineManager   Pre Link Transaction
+**** debug  Tue Jan 26 16:35:33 CET 2016    1453822533837   /atg/commerce/PipelineManager   Transaction is TX_MANDATORY
+**** debug  Tue Jan 26 16:35:33 CET 2016    1453822533837   /atg/commerce/PipelineManager   Transaction does exist and will be used
+**** debug  Tue Jan 26 16:35:33 CET 2016    1453822533837   /atg/commerce/PipelineManager   Link loadOrderObject return value: 1
+**** debug  Tue Jan 26 16:35:33 CET 2016    1453822533837   /atg/commerce/PipelineManager   Post Link Transaction
+**** debug  Tue Jan 26 16:35:33 CET 2016    1453822533837   /atg/commerce/PipelineManager   Transaction is TX_MANDATORY
+**** debug  Tue Jan 26 16:35:33 CET 2016    1453822533837   /atg/commerce/PipelineManager   Transaction does exist and was used
+**** debug  Tue Jan 26 16:35:33 CET 2016    1453822533837   /atg/commerce/PipelineManager   Executing link: loadPriceInfoObjectsForOrder
+**** debug  Tue Jan 26 16:35:33 CET 2016    1453822533837   /atg/commerce/PipelineManager   Pre Link Transaction
+**** debug  Tue Jan 26 16:35:33 CET 2016    1453822533837   /atg/commerce/PipelineManager   Transaction is TX_MANDATORY
+**** debug  Tue Jan 26 16:35:33 CET 2016    1453822533837   /atg/commerce/PipelineManager   Transaction does exist and will be used
+**** debug  Tue Jan 26 16:35:33 CET 2016    1453822533837   /atg/commerce/PipelineManager   Link loadPriceInfoObjectsForOrder return value: 1
+**** debug  Tue Jan 26 16:35:33 CET 2016    1453822533837   /atg/commerce/PipelineManager   Post Link Transaction
+**** debug  Tue Jan 26 16:35:33 CET 2016    1453822533837   /atg/commerce/PipelineManager   Transaction is TX_MANDATORY
+**** debug  Tue Jan 26 16:35:33 CET 2016    1453822533838   /atg/commerce/PipelineManager   Transaction does exist and was used
+**** debug  Tue Jan 26 16:35:33 CET 2016    1453822533838   /atg/commerce/PipelineManager   Last processor in chain, stopping chain execution for chain: loadOrder

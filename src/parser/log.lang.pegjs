@@ -6,12 +6,12 @@ LINE = l:( LOG / NUCLEUS_STARTED / FAILSAFE)  { return l }
 
 LOG
  =  start:LOG_START _ message:(MESSAGE/ANY){
- return {level: start.level, value: [ start, message]};
+ return {level: start.level, value: [ start, '\t', message]};
  }
  
 NUCLEUS_STARTED
   = _ "Nucleus running, app server startup continuing" _ {
-    return {level:'special', value:text(), unique:true}
+    return {level:'keyword', value:text(), unique:true}
   }
 
 FAILSAFE
@@ -21,7 +21,7 @@ LOG_START = DYNAMO_LOG_START
  
 DYNAMO_LOG_START
   = LOG_PREFIX? _ level:LEVEL _ date:TIMESTAMP _ process:INTEGER _ component:COMPONENT 
-  { return {level:level, value: [level,date,component]}}
+  { return {level:level, value: [level,'\t',date,'\t',component]}}
 
 
 COMPONENT
@@ -32,11 +32,57 @@ COMPONENT
      }
    }
 
+MESSAGE
+   = PIPELINE_MSG / ANY_MESSAGE
 
+PIPELINE_MSG = PIPELINE_MSG_GENERIC / PIPE_CHAIN_END
+
+
+PIPELINE_MSG_GENERIC
+  = prefix:$CHAIN_KEYWORD ws:_ name:WORD _ {
+    return [ 
+      {
+        value:prefix,
+        level:'chain'
+      }, 
+      ws,
+      {
+        value:name,
+        level:'keyword'
+      }
+    ]
+  }
+
+CHAIN_KEYWORD
+  = "Transaction is" / "Executing link:" / "Executing Chain:" / "Last processor in chain, stopping chain execution for chain:"
+
+//Link loadPriceInfoObjectsForOrder return value: 1
+PIPE_CHAIN_END
+ = prefix:$"Link " name:WORD suffix:" return value: " val:WORD {
+  return [
+    {
+        value:prefix,
+        level:'chain'
+    }, 
+    {
+      value:name,
+      level:'keyword'
+    }, 
+    {
+      value:suffix,
+      level:'chain'
+    }, 
+    {
+      value:val,
+      level:'keyword'
+    }
+  ]
+ }
     
-MESSAGE "logMessage"
+ANY_MESSAGE "logMessage"
   =  elements:( SYMBOL _? ) *   {
-  	let value = elements.map( elem => elem[0] , elem[1])
+    let value = [];
+    elements.map( elem => {value.push(elem[0]); value.push(elem[1]) })
     return {value:value, type:'message'}
   }
 
@@ -47,7 +93,7 @@ SYMBOL
 
 KEYWORD
  = "order" {
- 	return {value:text(),level:'keyword'}
+  return {value:text(),level:'keyword'}
  }
  
 WORD "WORD"
@@ -56,10 +102,13 @@ WORD "WORD"
 LOG_PREFIX "log prefix"
   = "****"
   
-LEVEL = ERROR / DEBUG / INFO / TRACE
+LEVEL = ERROR / DEBUG / INFO / TRACE / WARNING
   
 DEBUG "level: debug"
   = "debug"i {return 'debug'}
+  
+ WARNING "level: warning"
+  = "warn"i "ing"i? {return 'warning'}
 
 ERROR "level: error"
   = "err"i "or"i?  {return 'error'}
