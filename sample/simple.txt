@@ -27,6 +27,13 @@
 **** debug  Tue Jan 26 16:35:33 CET 2016    1453822533838   /atg/commerce/PipelineManager   Last processor in chain, stopping chain execution for chain: loadOrder
 **** info   Thu Jul 27 17:49:45 CEST 2017   1501170585904   SmartCache  test31_order
 
+**** Error  Thu Jul 27 09:16:20 CEST 2017   1501139780297   /atg/dynamo/servlet/dafpipeline/ActorServlet    Caused by :CONTAINER:atg.service.actor.ActorException: There was an error while trying to invoke a method.; SOURCE:java.lang.NullPointerException
+**** Error  Thu Jul 27 09:16:20 CEST 2017   1501139780297   /atg/dynamo/servlet/dafpipeline/ActorServlet        at atg.service.actor.ComponentActor.invokeMethod(ComponentActor.java:633)
+**** Error  Thu Jul 27 09:16:20 CEST 2017   1501139780297   /atg/dynamo/servlet/dafpipeline/ActorServlet        at atg.service.actor.ComponentActor.act(ComponentActor.java:400)
+**** Error  Thu Jul 27 09:16:20 CEST 2017   1501139780297   /atg/dynamo/servlet/dafpipeline/ActorServlet        at atg.service.actor.ActorChain.invokeActors(ActorChain.java:285)
+
+**** error  Tue Jan 26 16:35:33 CET 2016    1453822533837   /atg/commerce/PipelineManager   at atg.adapter.gsa.GSAItem.getPersistentPropertyValue(GSAItem.java:1349)
+
 2016-01-04 11:41:41,947 ERROR [nucleusNamespace.eStore.commerce.fulfillment.shopwarehouse.schedule.ShopWarehouseReadyForReturnOrderUpdaterSchedule] Exception occured CommerceException
 CAUGHT AT:
 CONTAINER:atg.commerce.CommerceException; SOURCE:CONTAINER:atg.service.pipeline.RunProcessException: An exception was thrown from the context of the link named [updatePriceInfoObjects].; SOURCE:CONTAINER:atg.commerce.CommerceException: Saving order 997470791 failed because doing so would result in data being overwritten. This save attempt had an out of date repository item [orderPriceInfo].; SOURCE:atg.repository.ConcurrentUpdateException: no rows updated oldVersion=9 for item=orderPriceInfo:ai101115391 in GSATransaction=atg.adapter.gsa.GSATransaction@2f3565c9    thread=/atg/dynamo/service/Scheduler-reusablejobhandler-ShopWarehouseOrderReadyForReturnUpdaterSchedule transaction=TransactionImple < ac, BasicAction: a72198e:dde8:5689f8a3:3b13c8 status: ActionStatus.RUNNING >

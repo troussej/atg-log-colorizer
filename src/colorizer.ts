@@ -18,19 +18,28 @@ const logger = new (winston.Logger)({
 export class Colorizer {
 
     contextStack: string[] = [];
-    context: string = 'info';
+    context: string = 'default';
 
     config: any = {
         patterns: {
-            debug:  chalk.white,
-            trace: chalk.grey,
+            default: chalk.white,
+            debug: chalk.white,
+            trace: chalk.white,
             info: chalk.green,
             warning: chalk.yellow,
             error: chalk.red,
             keyword: chalk.magenta,
-          //  component: chalk.underline,
+            //   component: chalk.dim,
             chain: chalk.cyan,
-         //   levelType:chalk.inverse
+            className: chalk.cyan,
+            identifier: chalk.yellow,
+            exception: chalk.inverse,
+            'at.method': chalk.red,
+            'at.className': chalk.cyan,
+            'keyword.id': chalk.inverse,
+
+
+            //   levelType:chalk.inverse
         }
     }
 
@@ -74,7 +83,7 @@ export class Colorizer {
         }
         //reset
         if (parsed && parsed.unique === true) {
-            this.context = 'debug';
+            this.context = 'default';
         }
 
         console.log(res);

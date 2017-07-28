@@ -1,0 +1,35 @@
+JAVA Memory arguments: -Xms512m -Xmx1g -XX:CompileThreshold=8000 -XX:PermSize=512m -XX:MaxPermSize=3g -Duser.country=US -Duser.language=en -Datg.dynamo.server.name=CUBE1CubeCSC -Datg.dynamo.data-dir=/opt/dev/tools/ATG/ATG11.2/home -Djava.rmi.server.hostname=localhost -Dweblogic.security.SSL.allowSmallRSAExponent=true -Dweblogic.security.SSL.ignoreHostnameVerification=true -Dweblogic.security.SSL.enable.renegotiation=true -Dweblogic.wsee.workarea.skipWorkAreaHeader=true -Djava.net.preferIPv4Stack=true
+.
+CLASSPATH=/opt/dev/projects/CUBE/wlsdomains/CubeCSC/libext/protocol.jar:/opt/dev/tools/java/jdk1.7.0_80/lib/tools.jar:/opt/dev/tools/oracle/Middleware/Oracle_Home/wlserver/server/lib/weblogic_sp.jar:/opt/dev/tools/oracle/Middleware/Oracle_Home/wlserver/server/lib/weblogic.jar:/opt/dev/tools/oracle/Middleware/Oracle_Home/wlserver/server/lib/webservices.jar:/opt/dev/tools/oracle/Middleware/Oracle_Home/wlserver/../oracle_common/modules/org.apache.ant_1.7.1/lib/ant-all.jar:/opt/dev/tools/oracle/Middleware/Oracle_Home/wlserver/../oracle_common/modules/net.sf.antcontrib_1.1.0.0_1-0b2/lib/ant-contrib.jar:/opt/dev/tools/oracle/Middleware/Oracle_Home/wlserver/modules/features/oracle.wls.common.nodemanager_1.0.0.0.jar:/opt/dev/tools/oracle/Middleware/Oracle_Home/wlserver/../oracle_common/modules/com.oracle.cie.config-wls-online_8.0.0.0.jar::/opt/dev/tools/oracle/Middleware/Oracle_Home/wlserver/common/derby/lib/derbynet.jar:/opt/dev/tools/oracle/Middleware/Oracle_Home/wlserver/common/derby/lib/derbyclient.jar:/opt/dev/tools/oracle/Middleware/Oracle_Home/wlserver/common/derby/lib/derby.jar:/opt/dev/tools/oracle/Middleware/Oracle_Home/wlserver/server/lib/xqrl.jar
+.
+PATH=/opt/dev/tools/oracle/Middleware/Oracle_Home/wlserver/server/bin:/opt/dev/tools/oracle/Middleware/Oracle_Home/wlserver/../oracle_common/modules/org.apache.ant_1.7.1/bin:/opt/dev/tools/java/jdk1.7.0_80/jre/bin:/opt/dev/tools/java/jdk1.7.0_80/bin:/home/dev/.autojump/bin:/opt/dev/tools/oracle/endeca/MDEX/6.5.2/bin:/opt/dev/tools/oracle/endeca/PlatformServices/11.2.0/bin:/opt/dev/tools/oracle/endeca/PlatformServices/11.2.0/perl/bin:/opt/dev/tools/oracle/endeca/PlatformServices/11.2.0/utilities:/opt/dev/tools/oracle/endeca/PlatformServices/11.2.0/j2sdk/jre/bin/server:/home/dev/.nvm/versions/node/v6.4.0/bin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/dev/tools/apache/maven/bin:/home/dev/bin:/opt/dev/tools/java/jdk7/bi:/opt/dev/tools/play/activator:/opt/dev/tools/apache/ant/bin:/u01/app/oracle/product/11.2.0/xe/bin
+.
+***************************************************
+*  To start WebLogic Server, use a username and   *
+*  password assigned to an admin-level user.  For *
+*  server administration, use the WebLogic Server *
+*  console at http://hostname:port/console        *
+***************************************************
+starting weblogic with Java version:
+Listening for transport dt_socket at address: 13003
+java version "1.7.0_80"
+Java(TM) SE Runtime Environment (build 1.7.0_80-b15)
+Java HotSpot(TM) 64-Bit Server VM (build 24.80-b11, mixed mode)
+Starting WLS with line:
+/opt/dev/tools/java/jdk1.7.0_80/bin/java -client -Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,address=13003,server=y,suspend=n -Djava.compiler=NONE  -Xms512m -Xmx1g -XX:CompileThreshold=8000 -XX:PermSize=512m -XX:MaxPermSize=3g -Duser.country=US -Duser.language=en -Datg.dynamo.server.name=CUBE1CubeCSC -Datg.dynamo.data-dir=/opt/dev/tools/ATG/ATG11.2/home -Djava.rmi.server.hostname=localhost -Dweblogic.security.SSL.allowSmallRSAExponent=true -Dweblogic.security.SSL.ignoreHostnameVerification=true -Dweblogic.security.SSL.enable.renegotiation=true -Dweblogic.wsee.workarea.skipWorkAreaHeader=true -Djava.net.preferIPv4Stack=true -Dweblogic.Name=AdminServer -Djava.security.policy=/opt/dev/tools/oracle/Middleware/Oracle_Home/wlserver/server/lib/weblogic.policy -agentpath:/opt/dev/tools/eclipse/plugins/org.zeroturnaround.eclipse.embedder_6.2.0.RELEASE-201505210657/jr6/jrebel/lib/libjrebel64.so -Drebel.check_class_hash=true  -Dcurrent.CubeCSCSrv.deployed=NL -Datg.dynamo.modules=CUBEStore.cube-env.env.CGI-DEV.CubeCSCSrv.NL -Xverify:none -Djava.endorsed.dirs=/opt/dev/tools/java/jdk1.7.0_80/jre/lib/endorsed:/opt/dev/tools/oracle/Middleware/Oracle_Home/wlserver/../oracle_common/modules/endorsed  -ea -da:com.bea... -da:javelin... -da:weblogic... -ea:com.bea.wli... -ea:com.bea.broker... -ea:com.bea.sbconsole... -Dwls.home=/opt/dev/tools/oracle/Middleware/Oracle_Home/wlserver/server -Dweblogic.home=/opt/dev/tools/oracle/Middleware/Oracle_Home/wlserver/server      weblogic.Server
+2017-07-28 10:49:13 JRebel:  
+2017-07-28 10:49:13 JRebel:  #############################################################
+2017-07-28 10:49:13 JRebel:  
+2017-07-28 10:49:13 JRebel:  JRebel Agent 6.2.0 (201505201205)
+2017-07-28 10:49:13 JRebel:  (c) Copyright ZeroTurnaround AS, Estonia, Tartu.
+2017-07-28 10:49:14 JRebel:  
+2017-07-28 10:49:14 JRebel:  Over the last 30 days JRebel prevented
+2017-07-28 10:49:14 JRebel:  at least 0 redeploys/restarts saving you about 0 hours.
+2017-07-28 10:49:14 JRebel:  
+2017-07-28 10:49:14 JRebel:  Over the last 218 days JRebel prevented
+2017-07-28 10:49:14 JRebel:  at least 0 redeploys/restarts saving you about 0 hours.
+2017-07-28 10:49:14 JRebel:  
+2017-07-28 10:49:14 JRebel:  UNABLE TO INITIALIZE LICENSING - NO LICENSE FOUND
+2017-07-28 10:49:14 JRebel:  
+2017-07-28 10:49:14 JRebel:  If you think this is an error, contact support@zeroturnaround.com.
+2017-07-28 10:49:14 JRebel:  

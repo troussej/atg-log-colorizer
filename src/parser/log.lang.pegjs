@@ -2,10 +2,10 @@
 
 // **** debug   Tue Jan 26 16:35:33 CET 2016    1453822533848   /atg/commerce/PipelineManager   Post Link Transaction
 
-LINE = l:( LOG / NUCLEUS_STARTED / FAILSAFE)  { return l }
+LINE = l:( LOG / NAKED_MESSAGE / NUCLEUS_STARTED / FAILSAFE)  { return l }
 
 LOG
- =  start:LOG_START _ message:(MESSAGE/ANY){
+ =  start:LOG_START _ message:(MESSAGE){
  return {level: start.level, value: [ start, '\t', message]};
  }
  
@@ -26,7 +26,7 @@ DYNAMO_LOG_START
 // 2016-02-03 12:23:14,948 DEBUG [org.jboss.system.ServiceController] PipelineResult has 0 errors
 JBOSS_LOG_START
  = date:$(WORD _ WORD) _ level:LEVEL _ "["? classname:CLASS "]"? {
-   return {value: [date, '\t',level,'\t', '[',classname,']'] , level:level.value}
+   return {value: [date, '\t',level,'\t', '[',classname,']' ] , level:level.value}
  }
 
 // <Jul 26, 2017 10:50:54 PM CEST> <Warning>
@@ -36,7 +36,7 @@ DOZER_LOG_START
  }
 
 CLASS
- = ([a-zA-Z0-9]+ ".")* [[a-zA-Z0-9]+ {
+ = ([a-zA-Z0-9#$]+ ".")* [a-zA-Z0-9#$]+ {
   return {value:text(),type:'component'}
  }
 
@@ -48,8 +48,10 @@ COMPONENT
      }
    }
 
+NAKED_MESSAGE = _ MESSAGE _
+
 MESSAGE
-   = PIPELINE_MSG / ANY_MESSAGE
+   = PIPELINE_MSG / STACKTRACE /  ANY_MESSAGE
 
 PIPELINE_MSG = PIPELINE_MSG_GENERIC / PIPE_CHAIN_END
 
@@ -94,6 +96,47 @@ PIPE_CHAIN_END
     }
   ]
  }
+
+STACKTRACE = EXCEPTION_OCCURED / STACKTRACE_AT /STACKTRACE_SOURCE/ STACKTRACE_CONTAINER /  STACKTRACE_CAUSED_BY
+
+// Exception occured CommerceException
+
+
+EXCEPTION_OCCURED
+= prefix:$("Exception occured" _) exception:CLASS {
+  return [ prefix,{value:exception,level:'exception'} ]
+}
+
+//Caused by :CONTAINER:atg.service.actor.ActorException: There was an error while trying to invoke a method.; SOURCE:java.lang.NullPointerException
+ STACKTRACE_CAUSED_BY
+ = "Caused by" _ ":" container:STACKTRACE_CONTAINER {
+  return {
+    value: [ "Caused by :", container ],
+    type:'causedby'
+    }
+ }
+
+ STACKTRACE_CONTAINER
+ = "CONTAINER" ":" exception:CLASS ":" _  msg:$[^;]+ ";" _ source:STACKTRACE_SOURCE? {
+  return {
+    value: [  "CONTAINER",":", {value:exception,level:'exception'},": ",msg,"; ", source ],
+    type:'container'
+    }
+ }
+
+ STACKTRACE_SOURCE
+  = "SOURCE" ":" exception:CLASS {
+    return [ "SOURCE:",{value:exception, level:'exception'} ]
+  }
+ 
+// at atg.adapter.gsa.GSAItem.getPersistentPropertyValue(GSAItem.java:1349)
+STACKTRACE_AT
+   = at:$"at" ws:_ method:CLASS "(" javaclass:CLASS ":" line:INTEGER ")" {
+    return {
+      value: [ at, ws, {value:method, level:'at.method'},"(", {value:javaclass, level:'at.className'},":",{value:line, level:'identifier'},")" ]
+    }
+   }
+
     
 ANY_MESSAGE "logMessage"
   =  elements:( SYMBOL _? ) *   {
@@ -108,8 +151,8 @@ SYMBOL
  =  KEYWORD / WORD
 
 KEYWORD
- = "order"i _ [=:]? _ WORD {
-  return {value:text(),level:'keyword'}
+ = ( "order"i / "commerceItem"i / "shippingGroup"i /"paymentGroup"i / "returnRequest"i / "returnItem"i )_ [=:]? _ WORD {
+  return {value:text(),level:'keyword.id'}
  }
  
 WORD "WORD"
@@ -139,7 +182,7 @@ NODE "NODE"
   =$[^ \t\n\r/]+
  
 PATH "PATH"
-  =$ ("/" NODE)+ / NODE
+  =$ (("/" NODE)+ / NODE / "/")
 
 TIMESTAMP "TIMESTAMP"
      = $(WORD _ WORD _ INTEGER _ Digit Digit ":" Digit Digit ":" Digit Digit _ WORD _ INTEGER)
