@@ -1,8 +1,7 @@
-
-
+//test=STACKTRACE_AT
 // **** debug   Tue Jan 26 16:35:33 CET 2016    1453822533848   /atg/commerce/PipelineManager   Post Link Transaction
 
-LINE = l:( LOG / NAKED_MESSAGE / NUCLEUS_STARTED / FAILSAFE)  { return l }
+LINE = l:( NUCLEUS_STARTED/LOG / NAKED_MESSAGE  / FAILSAFE)  { return l }
 
 LOG
  =  start:LOG_START _ message:(MESSAGE){
@@ -17,7 +16,9 @@ NUCLEUS_STARTED
 FAILSAFE
    = ANY {return {value:text(),failsafe:true}}
  
-LOG_START = DYNAMO_LOG_START /DOZER_LOG_START/JBOSS_LOG_START
+LOG_START =logStart:( DYNAMO_LOG_START /DOZER_LOG_START/JBOSS_LOG_START){
+  return {value:logStart,type:'logstart', level:logStart.level}
+}
  
 DYNAMO_LOG_START
   = LOG_PREFIX? _ level:LEVEL _ date:TIMESTAMP _ process:INTEGER _ component:COMPONENT 
@@ -35,9 +36,11 @@ DOZER_LOG_START
   return {value:text(), level:level.value}
  }
 
+CLASS_ELEM=$[^. :;\(\)]+
+
 CLASS
- = ([a-zA-Z0-9#$]+ ".")* [a-zA-Z0-9#$]+ {
-  return {value:text(),type:'component'}
+ = (CLASS_ELEM ".")+ CLASS_ELEM {
+  return {value:text(),type:'class'}
  }
 
 COMPONENT
@@ -75,7 +78,7 @@ PIPELINE_MSG_GENERIC
 
 
 CHAIN_KEYWORD
-  = "Transaction is" / "Executing link:" / "Done Executing Chain:" / "Executing Chain:" / "Last processor in chain, stopping chain execution for chain:"
+  = "Executing link:" / "Done Executing Chain:" / "Executing Chain:" / "Last processor in chain, stopping chain execution for chain:"
 
 //Link loadPriceInfoObjectsForOrder return value: 1
 PIPE_CHAIN_END
@@ -106,7 +109,9 @@ PIPE_CHAIN_END
     return [ prefix,{value:val,level:'keyword'},suffix ]
   }
 
-STACKTRACE = EXCEPTION_OCCURED / STACKTRACE_AT /STACKTRACE_ERROR /  STACKTRACE_CAUSED_BY
+STACKTRACE = value:(EXCEPTION_OCCURED / STACKTRACE_AT  /  STACKTRACE_CAUSED_BY / STACKTRACE_ERROR ){
+  return {value:value,type:'stacktrace'}
+}
 
 // Exception occured CommerceException
 
@@ -117,10 +122,11 @@ EXCEPTION_OCCURED
 }
 
 //Caused by :CONTAINER:atg.service.actor.ActorException: There was an error while trying to invoke a method.; SOURCE:java.lang.NullPointerException
+//Caused by (#2):com.d
  STACKTRACE_CAUSED_BY
- = "Caused by" _ ":" container:STACKTRACE_ERROR {
+ = "Caused by"  _ index:$( "(#" INTEGER ")" )? _ ":" container:STACKTRACE_ERROR {
   return {
-    value: [ "Caused by :", container ],
+    value: [ "Caused by :",  index, container ],
     type:'causedby'
     }
  }
@@ -128,7 +134,7 @@ EXCEPTION_OCCURED
  STACKTRACE_ERROR =  (STACKTRACE_ERROR_ELEM _  ";" _ )* STACKTRACE_ERROR_ELEM
  
  STACKTRACE_ERROR_ELEM
- = prefix:$(  ("SOURCE:CONTAINER"/ "CONTAINER" / "SOURCE") ":") exception:EXCEPTION sep:[;:]? ws:_  msg:$[^;]*  _ {
+ = prefix:$(  ("SOURCE:CONTAINER"/ "CONTAINER" / "SOURCE") ":")? exception:EXCEPTION sep:[;:]? ws:_  msg:$[^;]*  _ {
   return {
     value: [ prefix, exception,sep, ws,msg ],
     type:'stack_error_elem'
@@ -140,9 +146,9 @@ EXCEPTION_OCCURED
  
 // at atg.adapter.gsa.GSAItem.getPersistentPropertyValue(GSAItem.java:1349)
 STACKTRACE_AT
-   = at:$"at" ws:_ method:CLASS "(" javaclass:CLASS ":" line:INTEGER ")" {
+   = at:$"at" ws:_ method:CLASS "(" javaclass:CLASS  sep:":"? line:INTEGER? ")" {
     return {
-      value: [ '\t',at, ws, {value:method, level:'at.method'},"(", {value:javaclass, level:'at.className'},":",{value:line, level:'identifier'},")" ]
+      value: [ '\t',at, ws, {value:method, level:'at.method'},"(", {value:javaclass, level:'at.className'},sep,{value:line, level:'identifier'},")" ]
     }
    }
 

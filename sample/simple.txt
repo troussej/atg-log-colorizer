@@ -26,6 +26,23 @@
 **** debug  Tue Jan 26 16:35:33 CET 2016    1453822533838   /atg/commerce/PipelineManager   Transaction does exist and was used
 **** debug  Tue Jan 26 16:35:33 CET 2016    1453822533838   /atg/commerce/PipelineManager   Last processor in chain, stopping chain execution for chain: loadOrder
 **** info   Thu Jul 27 17:49:45 CEST 2017   1501170585904   SmartCache  test31_order
+**** info   Mon Jul 31 10:39:16 CEST 2017   1501490356511   /newReturnReasonsData/NewReturnReasonsDataLoader    Starting loader.
+
+
+    Nucleus running, app server startup continuing
+    
+
+strPath = /atg/spring/FromSpring
+putting this into FromSpring
+startService invoked
+
+
+**** Error  Mon Jul 31 16:02:36 CEST 2017   1501509756583   /       at weblogic.servlet.internal.WebAppServletContext$ServletInvocationAction.__run(WebAppServletContext.java:3333)
+**** Error  Mon Jul 31 16:02:36 CEST 2017   1501509756583   /       at weblogic.servlet.internal.WebAppServletContext$ServletInvocationAction.run(WebAppServletContext.java)
+**** Error  Mon Jul 31 16:02:36 CEST 2017   1501509756583   /       at weblogic.security.acl.internal.AuthenticatedSubject.doAs(AuthenticatedSubject.java:321)
+**** Error  Mon Jul 31 16:02:36 CEST 2017   1501509756583   /       at weblogic.security.service.SecurityManager.runAs(SecurityManager.java:120)
+**** Error  Mon Jul 31 16:02:36 CEST 2017   1501509756583   /       at weblogic.servlet.provider.WlsSubjectHandle.run(WlsSubjectHandle.java:57)
+**** Error  Mon Jul 31 16:02:36 CEST 2017   1501509756583   /       at
 
 **** Error  Fri Jul 28 16:38:16 CEST 2017   1501252696943   /   Bad type for property "/com/decathlon/cube/commerce/giftcard/GiftCardService.primaryPaymentGroupProvider" atg.nucleus.ConfigurationException: /com/decathlon/cube/commerce/payment/session/PrimaryPaymentGroupProvider  java.lang.IllegalArgumentException: argument type mismatch
 
