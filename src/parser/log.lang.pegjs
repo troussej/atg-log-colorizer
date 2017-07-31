@@ -53,7 +53,7 @@ NAKED_MESSAGE = _ MESSAGE _
 MESSAGE
    = PIPELINE_MSG / STACKTRACE /  ANY_MESSAGE
 
-PIPELINE_MSG = PIPELINE_MSG_GENERIC / PIPE_CHAIN_END
+PIPELINE_MSG = PIPELINE_MSG_GENERIC / PIPE_CHAIN_END / PIPE_RESULT
 
 
 PIPELINE_MSG_GENERIC
@@ -71,8 +71,11 @@ PIPELINE_MSG_GENERIC
     ]
   }
 
+  //Done Executing Chain: updateOrder
+
+
 CHAIN_KEYWORD
-  = "Transaction is" / "Executing link:" / "Executing Chain:" / "Last processor in chain, stopping chain execution for chain:"
+  = "Transaction is" / "Executing link:" / "Done Executing Chain:" / "Executing Chain:" / "Last processor in chain, stopping chain execution for chain:"
 
 //Link loadPriceInfoObjectsForOrder return value: 1
 PIPE_CHAIN_END
@@ -97,46 +100,56 @@ PIPE_CHAIN_END
   ]
  }
 
-STACKTRACE = EXCEPTION_OCCURED / STACKTRACE_AT /STACKTRACE_SOURCE/ STACKTRACE_CONTAINER /  STACKTRACE_CAUSED_BY
+ //debug   Tue Jan 26 16:35:33 CET 2016    /atg/commerce/PipelineManager   PipelineResult has 0 errors
+ PIPE_RESULT
+  = prefix:$"PipelineResult has " val:INTEGER suffix:$" errors" {
+    return [ prefix,{value:val,level:'keyword'},suffix ]
+  }
+
+STACKTRACE = EXCEPTION_OCCURED / STACKTRACE_AT /STACKTRACE_ERROR /  STACKTRACE_CAUSED_BY
 
 // Exception occured CommerceException
 
 
 EXCEPTION_OCCURED
-= prefix:$("Exception occured" _) exception:CLASS {
-  return [ prefix,{value:exception,level:'exception'} ]
+= prefix:$("Exception occured" _) exception:EXCEPTION {
+  return [ prefix,exception ]
 }
 
 //Caused by :CONTAINER:atg.service.actor.ActorException: There was an error while trying to invoke a method.; SOURCE:java.lang.NullPointerException
  STACKTRACE_CAUSED_BY
- = "Caused by" _ ":" container:STACKTRACE_CONTAINER {
+ = "Caused by" _ ":" container:STACKTRACE_ERROR {
   return {
     value: [ "Caused by :", container ],
     type:'causedby'
     }
  }
 
- STACKTRACE_CONTAINER
- = "CONTAINER" ":" exception:CLASS ":" _  msg:$[^;]+ ";" _ source:STACKTRACE_SOURCE? {
+ STACKTRACE_ERROR =  (STACKTRACE_ERROR_ELEM _  ";" _ )* STACKTRACE_ERROR_ELEM
+ 
+ STACKTRACE_ERROR_ELEM
+ = prefix:$(  ("SOURCE:CONTAINER"/ "CONTAINER" / "SOURCE") ":") exception:EXCEPTION sep:[;:]? ws:_  msg:$[^;]*  _ {
   return {
-    value: [  "CONTAINER",":", {value:exception,level:'exception'},": ",msg,"; ", source ],
-    type:'container'
+    value: [ prefix, exception,sep, ws,msg ],
+    type:'stack_error_elem'
     }
  }
 
- STACKTRACE_SOURCE
-  = "SOURCE" ":" exception:CLASS {
-    return [ "SOURCE:",{value:exception, level:'exception'} ]
-  }
+
+  
  
 // at atg.adapter.gsa.GSAItem.getPersistentPropertyValue(GSAItem.java:1349)
 STACKTRACE_AT
    = at:$"at" ws:_ method:CLASS "(" javaclass:CLASS ":" line:INTEGER ")" {
     return {
-      value: [ at, ws, {value:method, level:'at.method'},"(", {value:javaclass, level:'at.className'},":",{value:line, level:'identifier'},")" ]
+      value: [ '\t',at, ws, {value:method, level:'at.method'},"(", {value:javaclass, level:'at.className'},":",{value:line, level:'identifier'},")" ]
     }
    }
 
+EXCEPTION
+ = exception:CLASS {
+  return {value:exception.value,level:'exception'}
+}
     
 ANY_MESSAGE "logMessage"
   =  elements:( SYMBOL _? ) *   {
@@ -151,7 +164,7 @@ SYMBOL
  =  KEYWORD / WORD
 
 KEYWORD
- = ( "order"i / "commerceItem"i / "shippingGroup"i /"paymentGroup"i / "returnRequest"i / "returnItem"i )_ [=:]? _ WORD {
+ = ( "order"i / "commerceItem"i / "shippingGroup"i /"paymentGroup"i / "returnRequest"i / "returnItem"i ) _ [=:; \t] _ [^ .;,\t\n\r]+ {
   return {value:text(),level:'keyword.id'}
  }
  

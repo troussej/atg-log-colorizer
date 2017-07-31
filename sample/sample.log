@@ -1,6 +1,23 @@
 2016-02-03 12:23:14,948 DEBUG [org.jboss.system.ServiceController] Creating dependent components for: jboss.system:type=Log4jService,service=Logging dependents are: []
 2016-02-03 12:23:14,948 DEBUG [org.jboss.system.ServiceController] Executing Chain: Cost and lead time for scenario n° 2 : 
 
+**** info   Fri Jul 28 18:04:51 CEST 2017   1501257891635   /atg/commerce/inventory/InventoryRepository SQL Repository startup complete
+**** debug  Fri Jul 28 18:04:51 CEST 2017   1501257891733   /atg/dynamo/server/SQLRepositoryEventServer_production  --- atg.repository.RemovedItemException: Attempt to use an item which has been removed: das_gsa_subscriber:16000001
+**** debug  Fri Jul 28 18:04:51 CEST 2017   1501257891733   /atg/dynamo/server/SQLRepositoryEventServer_production      at atg.adapter.gsa.ItemTransactionState.<init>(ItemTransactionState.java:385)
+**** debug  Fri Jul 28 18:04:51 CEST 2017   1501257891733   /atg/dynamo/server/SQLRepositoryEventServer_production      at atg.adapter.gsa.GSAItem.getItemTransactionState(GSAItem.java:2440)
+**** debug  Fri Jul 28 18:04:51 CEST 2017   1501257891733   /atg/dynamo/server/SQLRepositoryEventServer_production      at atg.adapter.gsa.GSAItemDescriptor.markItemAsRemoved(GSAItemDescriptor.java:9737)
+**** debug  Fri Jul 28 18:04:51 CEST 2017   1501257891733   /atg/dynamo/server/SQLRepositoryEventServer_production      at atg.adapter.gsa.GSAItemDescriptor.removeItem(GSAItemDescriptor.java:11013)
+**** debug  Fri Jul 28 18:04:51 CEST 2017   1501257891733   /atg/dynamo/server/SQLRepositoryEventServer_production      at atg.adapter.gsa.GSARepository.removeItemInternal(GSARepository.java:1352)
+**** debug  Fri Jul 28 18:04:51 CEST 2017   1501257891733   /atg/dynamo/server/SQLRepositoryEventServer_production      at atg.adapter.gsa.GSARepository.removeItem(GSARepository.java:1182)
+**** debug  Fri Jul 28 18:04:51 CEST 2017   1501257891733   /atg/dynamo/server/SQLRepositoryEventServer_production      at atg.adapter.gsa.GSAItemDescriptor.unsubscribe(GSAItemDescriptor.java:5554)
+**** debug  Fri Jul 28 18:04:51 CEST 2017   1501257891733   /atg/dynamo/server/SQLRepositoryEventServer_production      at atg.adapter.gsa.GSAItemDescriptor.subscribe(GSAItemDescriptor.java:5497)
+**** debug  Fri Jul 28 18:04:51 CEST 2017   1501257891733   /atg/dynamo/server/SQLRepositoryEventServer_production      at atg.adapter.gsa.GSAItemDescriptor.resubscribe(GSAItemDescriptor.java:11322)
+**** debug  Fri Jul 28 18:04:51 CEST 2017   1501257891733   /atg/dynamo/server/SQLRepositoryEventServer_production      at atg.adapter.gsa.GSAItemDescriptor.sendGSAEvent(GSAItemDescriptor.java:11196)
+**** debug  Fri Jul 28 18:04:51 CEST 2017   1501257891733   /atg/dynamo/server/SQLRepositoryEventServer_production      at atg.adapter.gsa.event.GSAEventServer$EventQueueHandler$GSAEventEntryHandler.run(GSAEventServer.java:152)
+**** debug  Fri Jul 28 18:04:51 CEST 2017   1501257891733   /atg/dynamo/server/SQLRepositoryEventServer_production      at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+**** debug  Fri Jul 28 18:04:51 CEST 2017   1501257891733   /atg/dynamo/server/SQLRepositoryEventServer_production      at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+**** debug  Fri Jul 28 18:04:51 CEST 2017   1501257891733   /atg/dynamo/server/SQLRepositoryEventServer_production      at java.lang.Thread.run(Thread.java:745)
+**** debug  Fri Jul 28 18:04:51 CEST 2017   1501257891733   /atg/dynamo/server/SQLRepositoryEventServer_production  
 
 **** debug	Tue Jan 26 14:47:48 CET 2016	1453816068828	/com/decathlon/cube/commerce/ats/manager/DeliveryManager		[
 **** debug	Tue Jan 26 14:47:48 CET 2016	1453816068828	/com/decathlon/cube/commerce/ats/manager/DeliveryManager			Delivery scenario component: { inventory location = wh000002_huaqiao, Carrier route = { id = cr199, company = ZTWL, source = wh000002_huaqiao, destination = dz01_anhui_shi }, , prepared quantities = [ SKU 837138 : 5 item(s), SKU 545736 : 3 item(s),  ] }

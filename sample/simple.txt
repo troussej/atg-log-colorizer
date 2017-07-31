@@ -27,6 +27,9 @@
 **** debug  Tue Jan 26 16:35:33 CET 2016    1453822533838   /atg/commerce/PipelineManager   Last processor in chain, stopping chain execution for chain: loadOrder
 **** info   Thu Jul 27 17:49:45 CEST 2017   1501170585904   SmartCache  test31_order
 
+**** Error  Fri Jul 28 16:38:16 CEST 2017   1501252696943   /   Bad type for property "/com/decathlon/cube/commerce/giftcard/GiftCardService.primaryPaymentGroupProvider" atg.nucleus.ConfigurationException: /com/decathlon/cube/commerce/payment/session/PrimaryPaymentGroupProvider  java.lang.IllegalArgumentException: argument type mismatch
+
+
 **** Error  Thu Jul 27 09:16:20 CEST 2017   1501139780297   /atg/dynamo/servlet/dafpipeline/ActorServlet    Caused by :CONTAINER:atg.service.actor.ActorException: There was an error while trying to invoke a method.; SOURCE:java.lang.NullPointerException
 **** Error  Thu Jul 27 09:16:20 CEST 2017   1501139780297   /atg/dynamo/servlet/dafpipeline/ActorServlet        at atg.service.actor.ComponentActor.invokeMethod(ComponentActor.java:633)
 **** Error  Thu Jul 27 09:16:20 CEST 2017   1501139780297   /atg/dynamo/servlet/dafpipeline/ActorServlet        at atg.service.actor.ComponentActor.act(ComponentActor.java:400)

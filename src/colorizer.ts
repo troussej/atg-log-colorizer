@@ -56,6 +56,7 @@ export class Colorizer {
 
     private handleLine(line) {
 
+        line = this.cleanup(line);
 
         let res = line;
         let parsed: any;
@@ -88,6 +89,13 @@ export class Colorizer {
 
         console.log(res);
 
+    }
+
+    private cleanup(line: string): string {
+        if (line) {
+            return line.replace(/\0/g,' ').trim();
+        }
+        return '';
     }
 
     private applyColor(msg: string, level: string) {
