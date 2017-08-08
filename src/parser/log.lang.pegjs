@@ -9,7 +9,7 @@ LOG
  }
  
 NUCLEUS_STARTED
-  = _ "Nucleus running, app server startup continuing" _ {
+  = _ "Nucleus running, app server startup continuing" / "Invoking custom Nucleus initializer for Weblogic appserver." _ {
     return {level:'keyword', value:text(), unique:true}
   }
 
