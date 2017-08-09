@@ -45,18 +45,18 @@ atg-color is based on a parser that must recognize the whole line pattern. Small
 atg-color is run with nodejs, it's obviously slower than the original C++ tool. For now it looks fine.
 
 
-### Changelog
+## Changelog
 
-#### Todo
+### Todo
 
  - customizable patterns
  - customizable color scheme
 
-### [0.0.1]
+## [0.0.1]
 Fixed:
  - install
 
-#### [0.0.1] Initial Version
+### [0.0.1] Initial Version
 Added:
 
  - Level detection
