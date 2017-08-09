@@ -14,6 +14,11 @@ The goal it to highlight more than just log level : patterns like stacktraces, p
 
 ## Examples
 
+With [solarized](http://ethanschoonover.com/solarized) terminal colors
+
+![Screenshot 1](img/example.png "atg-color in action!")
+
+
 
 ## Install
 
