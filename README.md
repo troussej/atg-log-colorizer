@@ -52,6 +52,10 @@ atg-color is run with nodejs, it's obviously slower than the original C++ tool. 
  - customizable patterns
  - customizable color scheme
 
+### [0.0.1]
+Fixed:
+ - install
+
 #### [0.0.1] Initial Version
 Added:
 
