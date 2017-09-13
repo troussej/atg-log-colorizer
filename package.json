@@ -1,6 +1,6 @@
 {
   "name": "atg-color",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "extended atg log colorizer",
   "main": "index.js",
   "scripts": {
