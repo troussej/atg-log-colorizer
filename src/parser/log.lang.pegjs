@@ -1,7 +1,7 @@
 //test=STACKTRACE_AT
 // **** debug   Tue Jan 26 16:35:33 CET 2016    1453822533848   /atg/commerce/PipelineManager   Post Link Transaction
 
-LINE = l:( NUCLEUS_STARTED/LOG / NAKED_MESSAGE  / FAILSAFE)  { return l }
+LINE = l:( NUCLEUS_STARTED / LOG / NAKED_MESSAGE  / FAILSAFE)  { return l }
 
 LOG
  =  start:LOG_START _ message:(MESSAGE){
@@ -9,7 +9,7 @@ LOG
  }
  
 NUCLEUS_STARTED
-  = _ "Nucleus running, app server startup continuing" / "Invoking custom Nucleus initializer for Weblogic appserver." _ {
+  = _ ("Nucleus running, app server startup continuing" / "Invoking custom Nucleus initializer for Weblogic appserver.") _ {
     return {level:'keyword', value:text(), unique:true}
   }
 
