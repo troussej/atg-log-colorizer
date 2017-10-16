@@ -12,6 +12,7 @@ const logger = new (winston.Logger)({
         new (winston.transports.Console)({ colorize: true })
     ]
 });
+const AUTHOR_LINE = chalk.yellow('atg-color ') + chalk.red('by ') + chalk.white('Joël TROUSSET ') + chalk.green('- https://github.com/troussej/atg-log-colorizer');
 
 
 
@@ -45,6 +46,9 @@ export class Colorizer {
     }
 
     public start(): void {
+
+        this.readConfig();
+        this.printAuthorInfo();
         var rl = readline.createInterface({
             input: process.stdin,
             output: process.stdout,
@@ -99,9 +103,8 @@ export class Colorizer {
         return '';
     }
 
-    private applyColor(msg: string, level: string) {
+    private applyColor(msg: string, level: string):string{
         if (this.config.patterns[level]) {
-
             return this.config.patterns[level](msg);
         } else {
             return msg;
@@ -141,8 +144,19 @@ export class Colorizer {
             ret = '';
         }
         logger.silly('ret = %s', ret);
+        if(_.isNil(ret)){
+            ret = '';
+        }
         return ret;
 
+    }
+
+    private readConfig():void{
+
+    }
+
+    private printAuthorInfo():void{
+        console.log(AUTHOR_LINE);
     }
 
 }
