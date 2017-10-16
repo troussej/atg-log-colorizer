@@ -37,6 +37,7 @@ export class Colorizer {
             'at.method': chalk.red,
             'at.className': chalk.cyan,
             'keyword.id': chalk.inverse,
+            'jrebel':chalk.cyan
 
 
             //   levelType:chalk.inverse

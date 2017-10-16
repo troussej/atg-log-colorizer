@@ -19,6 +19,8 @@
 **** debug  Fri Jul 28 18:04:51 CEST 2017   1501257891733   /atg/dynamo/server/SQLRepositoryEventServer_production      at java.lang.Thread.run(Thread.java:745)
 **** debug  Fri Jul 28 18:04:51 CEST 2017   1501257891733   /atg/dynamo/server/SQLRepositoryEventServer_production  
 
+2017-10-16 15:55:43 JRebel: Watching EJB 'DMSTopic' for changes
+
 **** debug	Tue Jan 26 16:35:33 CET 2016	1453822533836	/atg/commerce/PipelineManager	Site isn't found in pipeline parameters.
 **** debug	Tue Jan 26 16:35:33 CET 2016	1453822533837	/atg/commerce/PipelineManager	Put site into pipeline parameters map
 **** debug	Tue Jan 26 16:35:33 CET 2016	1453822533837	/atg/commerce/PipelineManager	Running process for loadOrder
@@ -204,3 +206,4 @@ Caused by: CONTAINER:atg.commerce.CommerceException: Saving order 997470791 fail
         at atg.service.pipeline.PipelineLink.runProcess(PipelineLink.java:233)
         at atg.service.pipeline.PipelineChain.runProcess(PipelineChain.java:343)
         ... 11 more
+

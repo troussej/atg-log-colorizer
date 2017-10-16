@@ -1,11 +1,11 @@
 //test=STACKTRACE_AT
 // **** debug   Tue Jan 26 16:35:33 CET 2016    1453822533848   /atg/commerce/PipelineManager   Post Link Transaction
 
-LINE = l:( NUCLEUS_STARTED / LOG / NAKED_MESSAGE  / FAILSAFE)  { return l }
+LINE = l:( NUCLEUS_STARTED / LOG / NAKED_MESSAGE  / FAILSAFE)  {  l.fulltext=text(); return l }
 
 LOG
  =  start:LOG_START _ message:(MESSAGE){
- return {level: start.level, value: [ start, '\t', message]};
+ return {level: start.level, value: [ start, '\t', message],};
  }
  
 NUCLEUS_STARTED
@@ -16,7 +16,7 @@ NUCLEUS_STARTED
 FAILSAFE
    = ANY {return {value:text(),failsafe:true}}
  
-LOG_START =logStart:( DYNAMO_LOG_START /DOZER_LOG_START/JBOSS_LOG_START){
+LOG_START =logStart:( DYNAMO_LOG_START /DOZER_LOG_START/ JREBEL_LOG_START /JBOSS_LOG_START){
   return {value:logStart,type:'logstart', level:logStart.level}
 }
  
@@ -28,6 +28,12 @@ DYNAMO_LOG_START
 JBOSS_LOG_START
  = date:$(WORD _ WORD) _ level:LEVEL _ "["? classname:CLASS "]"? {
    return {value: [date, '\t',level,'\t', '[',classname,']' ] , level:level.value}
+ }
+
+// 2017-10-16 15:55:43 JRebel: Watching EJB 'DMSTopic' for changes
+JREBEL_LOG_START 
+ = date:$(WORD _ WORD) _ jrebel:"JRebel:" {
+   return {value: [date, '\t',jrebel ] , level:'jrebel'}
  }
 
 // <Jul 26, 2017 10:50:54 PM CEST> <Warning>

@@ -24,6 +24,7 @@
 **** debug  Tue Jan 26 16:35:33 CET 2016    1453822533838   /atg/commerce/PipelineManager   Transaction does exist and was used
 **** debug  Tue Jan 26 16:35:33 CET 2016    1453822533838   /atg/commerce/PipelineManager   Last processor in chain, stopping chain execution for chain: loadOrder
 **** info   Thu Jul 27 17:49:45 CEST 2017   1501170585904   SmartCache  test31_order
+2017-10-16 15:55:43 JRebel: Watching EJB 'DMSTopic' for changes
 **** info   Mon Jul 31 10:39:16 CEST 2017   1501490356511   /newReturnReasonsData/NewReturnReasonsDataLoader    Starting loader.
 
 
@@ -34,6 +35,10 @@ strPath = /atg/spring/FromSpring
 putting this into FromSpring
 startService invoked
 
+2017-10-16 17:01:42 JRebel: Reloading class 'com.decathlon.cube.commerce.returns.CubeReturnManager'.
+2017-10-16 17:02:16 JRebel: Reloading class 'com.decathlon.cube.commerce.returns.CubeReturnManager'.
+debug   Mon Oct 16 17:05:16 CEST 2017   /com/decathlon/cube/commerce/services/ReturnService About to send receiveReturnMessage for auto003_order
+debug   
 
 **** Error  Mon Jul 31 16:02:36 CEST 2017   1501509756583   /       at weblogic.servlet.internal.WebAppServletContext$ServletInvocationAction.__run(WebAppServletContext.java:3333)
 **** Error  Mon Jul 31 16:02:36 CEST 2017   1501509756583   /       at weblogic.servlet.internal.WebAppServletContext$ServletInvocationAction.run(WebAppServletContext.java)
