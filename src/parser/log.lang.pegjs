@@ -22,12 +22,12 @@ LOG_START =logStart:( DYNAMO_LOG_START /DOZER_LOG_START/ JREBEL_LOG_START /JBOSS
  
 DYNAMO_LOG_START
   = LOG_PREFIX? _ level:LEVEL _ date:TIMESTAMP _ process:INTEGER _ component:COMPONENT 
-  { return {level:level.value, value: [level,'\t',date,'\t',component]}}
+  { return {level:level.level, value: [level,'\t',date,'\t',component]}}
 
 // 2016-02-03 12:23:14,948 DEBUG [org.jboss.system.ServiceController] PipelineResult has 0 errors
 JBOSS_LOG_START
  = date:$(WORD _ WORD) _ level:LEVEL _ "["? classname:CLASS "]"? {
-   return {value: [date, '\t',level,'\t', '[',classname,']' ] , level:level.value}
+   return {value: [date, '\t',level,'\t', '[',classname,']' ] , level:level.level}
  }
 
 // 2017-10-16 15:55:43 JRebel: Watching EJB 'DMSTopic' for changes
@@ -39,7 +39,7 @@ JREBEL_LOG_START
 // <Jul 26, 2017 10:50:54 PM CEST> <Warning>
 DOZER_LOG_START
   = "<" date:[^>]+ ">" _ "<" level:LEVEL ">"{
-  return {value:text(), level:level.value}
+  return {value:text(), level:level.level}
  }
 
 CLASS_ELEM=$[^. :;\(\)]+
@@ -57,10 +57,12 @@ COMPONENT
      }
    }
 
-NAKED_MESSAGE = _ MESSAGE _
+NAKED_MESSAGE = _ msg:MESSAGE _ {
+  return {level:msg.level,value:msg.value}
+}
 
 MESSAGE
-   = PIPELINE_MSG / STACKTRACE /  ANY_MESSAGE
+   = PIPELINE_MSG / STACKTRACE /  SQL_MSG / ANY_MESSAGE
 
 PIPELINE_MSG = PIPELINE_MSG_GENERIC / PIPE_CHAIN_END / PIPE_RESULT
 
@@ -114,6 +116,16 @@ PIPE_CHAIN_END
   = prefix:$"PipelineResult has " val:INTEGER suffix:$" errors" {
     return [ prefix,{value:val,level:'keyword'},suffix ]
   }
+
+
+// [++SQLSelect++]
+SQL_MSG
+ = val:$(_ "[++SQLSelect++]" _) {
+  return {
+    level:'sql',
+    value:val
+  }
+ }
 
 STACKTRACE = value:(EXCEPTION_OCCURED / STACKTRACE_AT  /  STACKTRACE_CAUSED_BY / STACKTRACE_ERROR ){
   return {value:value,type:'stacktrace'}
@@ -189,19 +201,19 @@ LOG_PREFIX "log prefix"
 LEVEL = ERROR / DEBUG / INFO / TRACE / WARNING
   
 DEBUG "level: debug"
-  = "debug"i {return { value:'debug', level:'levelType'}}
+  = "debug"i {return { value:'debug', level:'debug'}}
   
- WARNING "level: warning"
-  = "warn"i "ing"i? {return { value:'warning', level:'levelType'}}
+WARNING "level: warning"
+  = "warn"i "ing"i? {return { value:'warning', level:'warning'}}
 
 ERROR "level: error"
-  = "err"i "or"i? {return { value:'error', level:'levelType'}}
+  = "err"i "or"i? {return { value:'error', level:'error'}}
 
 INFO "level: info"
-  = "info"i  {return { value:'info', level:'levelType'}}
+  = "info"i  {return { value:'info', level:'info'}}
 
 TRACE "level: trace"
-  = "trace"i  {return { value:'trace', level:'levelType'}}
+  = "trace"i  {return { value:'trace', level:'trace'}}
 
 NODE "NODE"
   =$[^ \t\n\r/]+
