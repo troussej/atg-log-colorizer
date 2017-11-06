@@ -44,6 +44,14 @@ debug
 **** Error  Mon Jul 31 16:02:36 CEST 2017   1501509756583   /       at weblogic.servlet.internal.WebAppServletContext$ServletInvocationAction.run(WebAppServletContext.java)
 **** Error  Mon Jul 31 16:02:36 CEST 2017   1501509756583   /       at weblogic.security.acl.internal.AuthenticatedSubject.doAs(AuthenticatedSubject.java:321)
 **** Error  Mon Jul 31 16:02:36 CEST 2017   1501509756583   /       at weblogic.security.service.SecurityManager.runAs(SecurityManager.java:120)
+[++SQLSelect++]
+SELECT tax_price_info,voucher_amount,man_adj_total
+FROM test_item_price
+WHERE item_id=?
+-- Parameters --
+p[1] = {pd} ex020_ai430080 (java.lang.String)
+[--SQLSelect--]
+
 **** Error  Mon Jul 31 16:02:36 CEST 2017   1501509756583   /       at weblogic.servlet.provider.WlsSubjectHandle.run(WlsSubjectHandle.java:57)
 **** Error  Mon Jul 31 16:02:36 CEST 2017   1501509756583   /       at
 
