@@ -58,3 +58,7 @@ typings/
 .env
 
 sample
+src
+test
+gulpfile.js
+
