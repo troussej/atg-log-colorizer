@@ -4,6 +4,10 @@ import * as chalk from 'chalk';
 import * as _ from 'lodash';
 import * as parser from './parser/log.lang';
 import * as winston from 'winston';
+import * as patternConfig from './config.patterns.default';
+import * as Q from 'q';
+
+import {Utils} from './utils';
 
 const logger = new (winston.Logger)({
     level: process.env.LOG_LEVEL,
@@ -12,44 +16,34 @@ const logger = new (winston.Logger)({
         new (winston.transports.Console)({ colorize: true })
     ]
 });
-const AUTHOR_LINE = chalk.yellow('atg-color ') + chalk.red('by ') + chalk.white('Joël TROUSSET ') + chalk.green('- https://github.com/troussej/atg-log-colorizer');
+const AUTHOR_LINE = chalk.yellow('atg-color ') + chalk.cyan('v'+process.env.npm_package_version) + chalk.yellow(' by ') + chalk.white('Joël TROUSSET ') + chalk.green('- https://github.com/troussej/atg-log-colorizer');
 
 
 
 export class Colorizer {
 
+    private utils: Utils;
     contextStack: string[] = [];
     context: string = 'default';
 
+
     config: any = {
-        patterns: {
-            default: chalk.white,
-            debug: chalk.white,
-            trace: chalk.white,
-            info: chalk.green,
-            warning: chalk.yellow,
-            error: chalk.red,
-            keyword: chalk.magenta,
-            //   component: chalk.dim,
-            chain: chalk.cyan,
-            className: chalk.cyan,
-            identifier: chalk.yellow,
-            exception: chalk.inverse,
-            'at.method': chalk.red,
-            'at.className': chalk.cyan,
-            'keyword.id': chalk.inverse,
-            'jrebel':chalk.cyan,
-            'sql':chalk.yellow
-
-
-            //   levelType:chalk.inverse
-        }
+        
     }
+
+    constructor(){
+        this.config.patterns = patternConfig;
+        this.utils = new Utils();
+    }
+
 
     public start(): void {
 
-        this.readConfig();
+        this.readConfig().then(()=>{
+
+        console.log('config: %j', this.config);
         this.printAuthorInfo();
+
         var rl = readline.createInterface({
             input: process.stdin,
             output: process.stdout,
@@ -57,6 +51,7 @@ export class Colorizer {
         });
 
         rl.on('line', this.handleLine.bind(this))
+        })
 
     }
 
@@ -105,8 +100,9 @@ export class Colorizer {
     }
 
     private applyColor(msg: string, level: string):string{
-        if (this.config.patterns[level]) {
-            return this.config.patterns[level](msg);
+        let format = this.config.patterns[level];
+        if (!!format && !!chalk[format]) {
+            return chalk[format](msg);
         } else {
             return msg;
         }
@@ -152,8 +148,13 @@ export class Colorizer {
 
     }
 
-    private readConfig():void{
-
+    private readConfig(): Q.Promise<any> {
+        return this.utils.readConfigFile().then((localConfig:any)=>{
+            console.log('localConfig : %j',localConfig)
+            if(!_.isNil(localConfig)){
+            _.merge(this.config,localConfig)
+            }
+        })
     }
 
     private printAuthorInfo():void{
