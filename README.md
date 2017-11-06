@@ -42,7 +42,7 @@ atg-color is based on a parser that must recognize the whole line pattern. Small
 
 ### Performances
 
-atg-color is run with nodejs, it's obviously slower than the original C++ tool. For now it looks fine.
+atg-color runs on nodejs, it's obviously slower than the original C++ tool. For now it looks fine.
 
 
 ## Changelog
@@ -52,7 +52,11 @@ atg-color is run with nodejs, it's obviously slower than the original C++ tool. 
  - customizable patterns
  - customizable color scheme
 
-## [0.0.1]
+## [0.0.6]
+Added:
+ -  sql block colorizing
+
+## [0.0.2]
 Fixed:
  - install
 
